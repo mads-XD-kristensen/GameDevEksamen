@@ -1,0 +1,33 @@
+{
+    "name": "PlayerControls",
+    "maps": [
+        {
+            "name": "DefaultInput",
+            "id": "10d33d38-8e6d-438f-8308-31bc94c3a119",
+            "actions": [
+                {
+                    "name": "onPress",
+                    "type": "PassThrough",
+                    "id": "c0a30c6e-2012-4de2-b020-7807824428e0",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press"
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "ff823971-15c4-47b7-8974-7d67be9b46ea",
+                    "path": "<Pointer>/press",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "onPress",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
