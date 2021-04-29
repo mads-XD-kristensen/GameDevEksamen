@@ -31,8 +31,14 @@ public class PlayerMovement : MonoBehaviour
         if(Keyboard.current != null && Keyboard.current.spaceKey.wasPressedThisFrame && isGrounded)
         {
             player.transform.position += Vector3.up * jumpHeight;
-            
-        }  
+            //player.AddForce(Vector3.up * jumpHeight);
+            //m_playerControls.Controls.Jump.triggered += Jump;
+        } 
+        
+    }
+
+    void Jump(InputAction.CallbackContext ctx){
+        player.AddForce(Vector3.up * jumpHeight);
     }
 
     void OnCollisionEnter(Collision other)
