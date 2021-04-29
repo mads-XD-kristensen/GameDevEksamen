@@ -8,12 +8,13 @@ public class PlayerMovement : MonoBehaviour
    private PlayerControls m_playerControls;
    private Rigidbody player;
    private float runSpeed = 5f;
-   private float jumpHeight = 1f;
+   private float jumpHeight = 1.5f;
    private bool isGrounded = true;
-
+    
     private void Awake() {
         m_playerControls = new PlayerControls();
         player = GetComponent<Rigidbody>();
+        player.constraints = RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotationZ;
     }
     
 
@@ -31,12 +32,7 @@ public class PlayerMovement : MonoBehaviour
         {
             player.transform.position += Vector3.up * jumpHeight;
             
-        }
-       
-        if (Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame)
-        {
-            Debug.Log("Mouse pressed!");
-        }
+        }  
     }
 
     void OnCollisionEnter(Collision other)
