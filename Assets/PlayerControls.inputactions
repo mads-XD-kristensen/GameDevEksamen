@@ -2,13 +2,29 @@
     "name": "PlayerControls",
     "maps": [
         {
-            "name": "DefaultInput",
-            "id": "10d33d38-8e6d-438f-8308-31bc94c3a119",
+            "name": "Controls",
+            "id": "0ba95e07-177d-4fc2-b489-1899145ac2c5",
             "actions": [
                 {
-                    "name": "onPress",
+                    "name": "RunRight",
                     "type": "PassThrough",
-                    "id": "c0a30c6e-2012-4de2-b020-7807824428e0",
+                    "id": "3920fa6f-c978-4bc8-a340-be80c5605d96",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press"
+                },
+                {
+                    "name": "RunLeft",
+                    "type": "PassThrough",
+                    "id": "68ccf705-8e33-4c28-9e12-c830ffd2942d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press"
+                },
+                {
+                    "name": "Jump",
+                    "type": "PassThrough",
+                    "id": "9f390c55-b2c1-46cc-913f-e9ff836b1617",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "Press"
@@ -17,12 +33,34 @@
             "bindings": [
                 {
                     "name": "",
-                    "id": "ff823971-15c4-47b7-8974-7d67be9b46ea",
-                    "path": "<Pointer>/press",
+                    "id": "9bad2fa6-8792-4a64-afb9-cb48cbaa2dfe",
+                    "path": "<Keyboard>/d",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "onPress",
+                    "action": "RunRight",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "990a2276-8ffb-44ea-92c1-742bd5a408c4",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RunLeft",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "07ee4b17-093c-465e-8f2a-d7dee626bfec",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Jump",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
