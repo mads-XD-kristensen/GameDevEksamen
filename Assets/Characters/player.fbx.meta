@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 6563caa1bce1f6a439691f4e280ddd38
+guid: eb3a0a34eddee1b4b8910b8352b643d2
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable:
@@ -10,15 +10,72 @@ ModelImporter:
       74: -4563525408433197697
     second: Armature.001|All_animations
   - first:
+      74: 2037354972285884364
+    second: Armature.001|bodyAction
+  - first:
       74: 4699274299699868179
     second: Armature.001|Idle
   - first:
       74: -5376665257271825894
     second: Armature.001|Jump
   - first:
+      74: -128682471074587696
+    second: Armature.001|left_eyeAction
+  - first:
+      74: -8779909462317765944
+    second: Armature.001|left_shoe.001Action
+  - first:
+      74: -6187055777192133293
+    second: Armature.001|left_shoe.002Action
+  - first:
+      74: -903412098439313565
+    second: Armature.001|left_shoe.002Action.001
+  - first:
+      74: 8727886525817725973
+    second: Armature.001|left_shoe.002Action.002
+  - first:
+      74: 4586119363266625272
+    second: Armature.001|left_shoe.002Action.003
+  - first:
+      74: -7487984273581204702
+    second: Armature.001|mouthAction
+  - first:
+      74: 3032444754688059595
+    second: Armature.001|right_eyeAction
+  - first:
       74: -2969036542940970518
     second: Armature.001|Run
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.001
+    second: {fileID: 2100000, guid: bfc57fe99eb895145ab9f85848c5cf52, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.002
+    second: {fileID: 2100000, guid: 8e69dbda9d2b4eb40bdcb24fc83074f7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.003
+    second: {fileID: 2100000, guid: cc1726ebf600154468c9c88c17372358, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.005
+    second: {fileID: 2100000, guid: a8945625359899540a54f45b74566390, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: shoe_maetrial
+    second: {fileID: 2100000, guid: 5eca7859242be17468b7d48ed25e43b5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: shoe_mateiral_3
+    second: {fileID: 2100000, guid: 73337425a51f2a14d8d150b2f4b6c42f, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
