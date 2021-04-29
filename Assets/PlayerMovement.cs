@@ -5,16 +5,20 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-   private PlayerControls m_playerControls;
+
+   public PlayerControls m_playerControls;
    private Rigidbody player;
    private float runSpeed = 5f;
-   private float jumpHeight = 1.5f;
+   private float jumpHeight = 2550f;
    private bool isGrounded = true;
-    
+    private Vector3 playerVelocity;
+
     private void Awake() {
         m_playerControls = new PlayerControls();
         player = GetComponent<Rigidbody>();
         player.constraints = RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotationZ;
+
+        m_playerControls.Controls.Jump.performed +=  Jump;
     }
     
 
@@ -30,15 +34,20 @@ public class PlayerMovement : MonoBehaviour
         }
         if(Keyboard.current != null && Keyboard.current.spaceKey.wasPressedThisFrame && isGrounded)
         {
-            player.transform.position += Vector3.up * jumpHeight;
+            //player.transform.position += Vector3.up * jumpHeight;
             //player.AddForce(Vector3.up * jumpHeight);
             //m_playerControls.Controls.Jump.triggered += Jump;
         } 
-        
+
     }
 
     void Jump(InputAction.CallbackContext ctx){
-        player.AddForce(Vector3.up * jumpHeight);
+        
+        if(isGrounded)
+        {
+            player.AddForce(Vector3.up * jumpHeight);
+        }
+        
     }
 
     void OnCollisionEnter(Collision other)
