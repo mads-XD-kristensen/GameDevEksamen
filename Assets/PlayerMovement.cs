@@ -19,11 +19,17 @@ public class PlayerMovement : MonoBehaviour
         player.constraints = RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotationZ;
 
         m_playerControls.Controls.Jump.performed +=  Jump;
-        m_playerControls.Controls.Movement.performed += ctx => Move(ctx);
+        //m_playerControls.Controls.Movement.performed += ctx => Move(ctx);
     }
     void Update()
     {
-        
+        if(m_playerControls.Controls.Movement.ReadValue<float>() == 1){
+            // Move forward
+            player.transform.position += Vector3.right * runSpeed * Time.deltaTime;
+        }else if (m_playerControls.Controls.Movement.ReadValue<float>() == -1){
+            // Move backwards
+            player.transform.position += Vector3.left * runSpeed * Time.deltaTime;
+        }
 
     }
     void Move(InputAction.CallbackContext ctx){
