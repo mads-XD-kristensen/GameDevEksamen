@@ -34,11 +34,15 @@ public class PlayerMovement : MonoBehaviour
                 // Move forward
                 animator.SetBool("isRunning", true);
                 player.transform.position += Vector3.right * runSpeed * Time.deltaTime;
+                //player.transform.rotation = Quaternion.RotateTowards(player.transform.rotation, Quaternion.LookRotation(-Vector3.right), 1000f * Time.deltaTime);
+                player.transform.right = -Vector3.right;
                 break;
             case -1:
                 // Move backwards
                 animator.SetBool("isRunning", true);
                 player.transform.position += Vector3.left * runSpeed * Time.deltaTime;
+                //player.transform.rotation = Quaternion.RotateTowards(player.transform.rotation, Quaternion.LookRotation(-Vector3.left), 1000f * Time.deltaTime);
+                player.transform.right = -Vector3.left;
                 break;
             default:
                 animator.SetBool("isRunning", false);
