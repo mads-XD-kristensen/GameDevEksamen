@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
     private float jumpHeight = 1.5f;
     private bool isGrounded = true;
     private Animator animator;
+    private Vector3 direction;
 
     private void Awake()
     {
@@ -79,4 +80,5 @@ public class PlayerMovement : MonoBehaviour
     {
         m_playerControls.Controls.Disable();
     }
+
 }
