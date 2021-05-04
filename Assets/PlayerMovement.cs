@@ -10,7 +10,7 @@ public class PlayerMovement : MonoBehaviour
     public PlayerControls m_playerControls;
     private Rigidbody player;
     private float runSpeed = 5f;
-    private float jumpHeight = 2550f;
+    private float jumpHeight = 250f;
     private bool isGrounded = true;
     private Vector3 playerVelocity;
 
@@ -22,36 +22,36 @@ public class PlayerMovement : MonoBehaviour
         player.constraints = RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotationZ;
 
         m_playerControls.Controls.Jump.performed += Jump;
-        m_playerControls.Controls.Movement.performed += ctx => Move(ctx);
-
-        animator.SetBool("isRunning", false);
+        //m_playerControls.Controls.Movement.performed += ctx => Move(ctx);
     }
     void Update()
     {
+        float movementFloat = m_playerControls.Controls.Movement.ReadValue<float>();
 
-
-    }
-    void Move(InputAction.CallbackContext ctx)
-    {
-        Debug.Log("player wants to move " + ctx.ReadValue<float>());
-
-        float movedir = ctx.ReadValue<float>();
-        if (movedir == 1)
+        switch (movementFloat)
         {
-            animator.SetBool("isRunning", true);
-            player.transform.position += Vector3.right * runSpeed * Time.deltaTime;
+            case 1:
+                // Move forward
+                animator.SetBool("isRunning", true);
+                player.transform.position += Vector3.right * runSpeed * Time.deltaTime;
+                break;
+            case -1:
+                // Move backwards
+                animator.SetBool("isRunning", true);
+                player.transform.position += Vector3.left * runSpeed * Time.deltaTime;
+                break;
+            default:
+                animator.SetBool("isRunning", false);
+                break;
         }
-        else if (movedir == -1)
-        {
-            animator.SetBool("isRunning", true);
-            player.transform.position += Vector3.left * runSpeed * Time.deltaTime;
-        }
+
     }
     void Jump(InputAction.CallbackContext ctx)
     {
 
         if (isGrounded)
         {
+            animator.SetTrigger("isJumping");
             player.AddForce(Vector3.up * jumpHeight);
         }
 
