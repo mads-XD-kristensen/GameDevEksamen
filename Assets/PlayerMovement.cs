@@ -19,28 +19,23 @@ public class PlayerMovement : MonoBehaviour
         player.constraints = RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotationZ;
 
         m_playerControls.Controls.Jump.performed +=  Jump;
+        m_playerControls.Controls.Movement.performed += ctx => Move(ctx);
     }
-    
-
     void Update()
     {
-        if(Keyboard.current != null && Keyboard.current.dKey.isPressed)
-        {
-            player.transform.position += Vector3.right * runSpeed * Time.deltaTime;
-        }
-        if(Keyboard.current != null && Keyboard.current.aKey.isPressed)
-        {
-            player.transform.position += Vector3.right * -runSpeed * Time.deltaTime;
-        }
-        if(Keyboard.current != null && Keyboard.current.spaceKey.wasPressedThisFrame && isGrounded)
-        {
-            //player.transform.position += Vector3.up * jumpHeight;
-            //player.AddForce(Vector3.up * jumpHeight);
-            //m_playerControls.Controls.Jump.triggered += Jump;
-        } 
+        
 
     }
-
+    void Move(InputAction.CallbackContext ctx){
+        Debug.Log("player wants to move " + ctx.ReadValue<float>());
+        
+        float movedir = ctx.ReadValue<float>();
+        if (movedir == 1){
+            player.transform.position += Vector3.right * runSpeed * Time.deltaTime;
+        }else if(movedir == -1){
+            player.transform.position += Vector3.left * runSpeed * Time.deltaTime;
+        }
+    }
     void Jump(InputAction.CallbackContext ctx){
         
         if(isGrounded)
