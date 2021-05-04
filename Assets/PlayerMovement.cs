@@ -5,13 +5,14 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-    private PlayerControls m_playerControls;
+
+    private Animator animator;
+    public PlayerControls m_playerControls;
     private Rigidbody player;
     private float runSpeed = 5f;
-    private float jumpHeight = 1.5f;
+    private float jumpHeight = 2550f;
     private bool isGrounded = true;
-    private Animator animator;
-    private Vector3 direction;
+    private Vector3 playerVelocity;
 
     private void Awake()
     {
@@ -19,40 +20,41 @@ public class PlayerMovement : MonoBehaviour
         player = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
         player.constraints = RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotationZ;
+
+        m_playerControls.Controls.Jump.performed += Jump;
+        m_playerControls.Controls.Movement.performed += ctx => Move(ctx);
+
+        animator.SetBool("isRunning", false);
     }
-
-
     void Update()
     {
-        bool anyKeyPressed = (Keyboard.current != null);
-        bool dKeyPressed = (Keyboard.current.dKey.isPressed);
-        bool aKeyPressed = (Keyboard.current.aKey.isPressed);
-        bool spacePressed = (Keyboard.current.spaceKey.wasPressedThisFrame);
 
-        if (anyKeyPressed && dKeyPressed)
+
+    }
+    void Move(InputAction.CallbackContext ctx)
+    {
+        Debug.Log("player wants to move " + ctx.ReadValue<float>());
+
+        float movedir = ctx.ReadValue<float>();
+        if (movedir == 1)
         {
             animator.SetBool("isRunning", true);
             player.transform.position += Vector3.right * runSpeed * Time.deltaTime;
         }
-
-
-        if (anyKeyPressed && aKeyPressed)
+        else if (movedir == -1)
         {
             animator.SetBool("isRunning", true);
-            player.transform.position += Vector3.right * -runSpeed * Time.deltaTime;
+            player.transform.position += Vector3.left * runSpeed * Time.deltaTime;
         }
+    }
+    void Jump(InputAction.CallbackContext ctx)
+    {
 
-        if (anyKeyPressed && !aKeyPressed && !dKeyPressed)
+        if (isGrounded)
         {
-            animator.SetBool("isRunning", false);
+            player.AddForce(Vector3.up * jumpHeight);
         }
 
-
-        if (anyKeyPressed && spacePressed && isGrounded)
-        {
-            animator.SetTrigger("isJumping");
-            player.transform.position += Vector3.up * jumpHeight;
-        }
     }
 
     void OnCollisionEnter(Collision other)

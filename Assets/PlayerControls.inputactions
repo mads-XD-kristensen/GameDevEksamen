@@ -6,53 +6,23 @@
             "id": "0ba95e07-177d-4fc2-b489-1899145ac2c5",
             "actions": [
                 {
-                    "name": "RunRight",
-                    "type": "PassThrough",
-                    "id": "3920fa6f-c978-4bc8-a340-be80c5605d96",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "Press"
-                },
-                {
-                    "name": "RunLeft",
-                    "type": "PassThrough",
-                    "id": "68ccf705-8e33-4c28-9e12-c830ffd2942d",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "Press"
-                },
-                {
                     "name": "Jump",
                     "type": "PassThrough",
                     "id": "9f390c55-b2c1-46cc-913f-e9ff836b1617",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "Press"
+                },
+                {
+                    "name": "Movement",
+                    "type": "PassThrough",
+                    "id": "ee52268f-ead8-462d-9aff-50bd6151b13b",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press"
                 }
             ],
             "bindings": [
-                {
-                    "name": "",
-                    "id": "9bad2fa6-8792-4a64-afb9-cb48cbaa2dfe",
-                    "path": "<Keyboard>/d",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "RunRight",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "990a2276-8ffb-44ea-92c1-742bd5a408c4",
-                    "path": "<Keyboard>/a",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "RunLeft",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
                 {
                     "name": "",
                     "id": "07ee4b17-093c-465e-8f2a-d7dee626bfec",
@@ -63,6 +33,39 @@
                     "action": "Jump",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "1D Axis",
+                    "id": "62070376-b756-4e7e-8f4d-5da1a3acb350",
+                    "path": "1DAxis",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Movement",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "d131bb62-b47a-4654-9156-40df6b305883",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "4f6cd680-1669-457d-8db8-8d6f5ffcd056",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
                 }
             ]
         }
