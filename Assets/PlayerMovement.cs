@@ -6,60 +6,76 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
 
-   public PlayerControls m_playerControls;
-   private Rigidbody player;
-   private float runSpeed = 5f;
-   private float jumpHeight = 2550f;
-   private bool isGrounded = true;
+    private Animator animator;
+    public PlayerControls m_playerControls;
+    private Rigidbody player;
+    private float runSpeed = 5f;
+    private float jumpHeight = 250f;
+    private bool isGrounded = true;
     private Vector3 playerVelocity;
 
-    private void Awake() {
+    private void Awake()
+    {
         m_playerControls = new PlayerControls();
         player = GetComponent<Rigidbody>();
+        animator = GetComponent<Animator>();
         player.constraints = RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotationZ;
 
-        m_playerControls.Controls.Jump.performed +=  Jump;
-        m_playerControls.Controls.Movement.performed += ctx => Move(ctx);
+        m_playerControls.Controls.Jump.performed += Jump;
+        //m_playerControls.Controls.Movement.performed += ctx => Move(ctx);
     }
     void Update()
     {
-        
+        float movementFloat = m_playerControls.Controls.Movement.ReadValue<float>();
+
+        switch (movementFloat)
+        {
+            case 1:
+                // Move forward
+                animator.SetBool("isRunning", true);
+                player.transform.position += Vector3.right * runSpeed * Time.deltaTime;
+                //player.transform.rotation = Quaternion.RotateTowards(player.transform.rotation, Quaternion.LookRotation(-Vector3.right), 1000f * Time.deltaTime);
+                player.transform.right = -Vector3.right;
+                break;
+            case -1:
+                // Move backwards
+                animator.SetBool("isRunning", true);
+                player.transform.position += Vector3.left * runSpeed * Time.deltaTime;
+                //player.transform.rotation = Quaternion.RotateTowards(player.transform.rotation, Quaternion.LookRotation(-Vector3.left), 1000f * Time.deltaTime);
+                player.transform.right = -Vector3.left;
+                break;
+            default:
+                animator.SetBool("isRunning", false);
+                break;
+        }
 
     }
-    void Move(InputAction.CallbackContext ctx){
-        Debug.Log("player wants to move " + ctx.ReadValue<float>());
-        
-        float movedir = ctx.ReadValue<float>();
-        if (movedir == 1){
-            player.transform.position += Vector3.right * runSpeed * Time.deltaTime;
-        }else if(movedir == -1){
-            player.transform.position += Vector3.left * runSpeed * Time.deltaTime;
-        }
-    }
-    void Jump(InputAction.CallbackContext ctx){
-        
-        if(isGrounded)
+    void Jump(InputAction.CallbackContext ctx)
+    {
+
+        if (isGrounded)
         {
+            animator.SetTrigger("isJumping");
             player.AddForce(Vector3.up * jumpHeight);
         }
-        
+
     }
 
     void OnCollisionEnter(Collision other)
- {
-     if (other.gameObject.tag == "Ground")
-     {
-         isGrounded = true;
-     }
- }
- 
- void OnCollisionExit(Collision other)
- {
-     if (other.gameObject.tag == "Ground")
-     {
-         isGrounded = false;
-     }
- }
+    {
+        if (other.gameObject.tag == "Ground")
+        {
+            isGrounded = true;
+        }
+    }
+
+    void OnCollisionExit(Collision other)
+    {
+        if (other.gameObject.tag == "Ground")
+        {
+            isGrounded = false;
+        }
+    }
 
     void OnEnable()
     {
@@ -70,4 +86,5 @@ public class PlayerMovement : MonoBehaviour
     {
         m_playerControls.Controls.Disable();
     }
+
 }

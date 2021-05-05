@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 6563caa1bce1f6a439691f4e280ddd38
+guid: a7dae4df803cb654eba7410bd11e32b6
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable:
@@ -10,11 +10,17 @@ ModelImporter:
       74: -4563525408433197697
     second: Armature.001|All_animations
   - first:
+      74: 2037354972285884364
+    second: Armature.001|bodyAction
+  - first:
       74: 4699274299699868179
     second: Armature.001|Idle
   - first:
       74: -5376665257271825894
     second: Armature.001|Jump
+  - first:
+      74: -6187055777192133293
+    second: Armature.001|left_shoe.002Action
   - first:
       74: -2969036542940970518
     second: Armature.001|Run
