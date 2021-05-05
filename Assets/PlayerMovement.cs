@@ -9,8 +9,8 @@ public class PlayerMovement : MonoBehaviour
     private Animator animator;
     public PlayerControls m_playerControls;
     private Rigidbody player;
-    private float runSpeed = 5f;
-    private float jumpHeight = 250f;
+    [SerializeField] private float runSpeed = 5f;
+    [SerializeField] private float jumpHeight = 250f;
     private bool isGrounded = true;
     private Vector3 playerVelocity;
 
