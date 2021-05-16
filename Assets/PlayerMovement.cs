@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
-
+    public GameObject GO;
     private Animator animator;
     public PlayerControls m_playerControls;
     private Rigidbody player;
@@ -13,13 +14,14 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float jumpHeight = 250f;
     private bool isGrounded = true;
     private Vector3 playerVelocity;
+    public int health = 1;
 
     private void Awake()
     {
         m_playerControls = new PlayerControls();
         player = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
-        player.constraints = RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotationZ;
+        //player.constraints = RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotationZ;
 
         m_playerControls.Controls.Jump.performed += Jump;
         //m_playerControls.Controls.Movement.performed += ctx => Move(ctx);
@@ -59,6 +61,21 @@ public class PlayerMovement : MonoBehaviour
             player.AddForce(Vector3.up * jumpHeight);
         }
 
+    }
+    public void TakeDamage()
+    {
+        health = health - 1;
+        if(health <= 0)
+        {
+            Destroy(GO);
+            Scene active_scene = SceneManager.GetActiveScene();
+            SceneManager.LoadScene(active_scene.name);
+        }
+    }
+
+    public void OneUp()
+    {
+        health += 1;
     }
 
     void OnCollisionEnter(Collision other)
