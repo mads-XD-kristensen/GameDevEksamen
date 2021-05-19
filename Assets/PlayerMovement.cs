@@ -12,17 +12,17 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody player;
     [SerializeField] private float runSpeed = 5f;
     [SerializeField] private float jumpHeight = 250f;
-    private bool isGrounded = true;
+    private bool canJump =true;
     private Vector3 playerVelocity;
     public int health = 1;
-
+    private float detectionRange = 0.07f;
     private void Awake()
     {
         m_playerControls = new PlayerControls();
         player = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
         //player.constraints = RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotationZ;
-
+        
         m_playerControls.Controls.Jump.performed += Jump;
         //m_playerControls.Controls.Movement.performed += ctx => Move(ctx);
     }
@@ -52,11 +52,23 @@ public class PlayerMovement : MonoBehaviour
         }
 
     }
+    private void FixedUpdate() {
+        RaycastHit hit;
+        Debug.DrawRay(GO.transform.position, transform.TransformDirection (Vector3.down) * detectionRange, Color.yellow);
+        if(Physics.Raycast(GO.transform.position, Vector3.down, out hit, detectionRange))       // detectionRange can blive sat op for at øge hvornår man rammer jorden så man kan hoppe igen OPS!! hvis den er for høj kan man hoppe 2 gange
+        {
+            if(hit.collider != null)
+            {
+                canJump = true;
+                Debug.Log(hit.collider.name); // for at debug hvad spiller rammer efter hop
+            }
+        }
+    }
     void Jump(InputAction.CallbackContext ctx)
     {
-
-        if (isGrounded)
+        if (canJump)
         {
+            canJump = false;
             animator.SetTrigger("isJumping");
             player.AddForce(Vector3.up * jumpHeight);
         }
@@ -76,22 +88,6 @@ public class PlayerMovement : MonoBehaviour
     public void OneUp()
     {
         health += 1;
-    }
-
-    void OnCollisionEnter(Collision other)
-    {
-        if (other.gameObject.tag == "Ground")
-        {
-            isGrounded = true;
-        }
-    }
-
-    void OnCollisionExit(Collision other)
-    {
-        if (other.gameObject.tag == "Ground")
-        {
-            isGrounded = false;
-        }
     }
 
     void OnEnable()
