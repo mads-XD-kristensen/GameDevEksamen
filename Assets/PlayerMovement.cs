@@ -15,7 +15,7 @@ public class PlayerMovement : MonoBehaviour
     private bool canJump =true;
     private Vector3 playerVelocity;
     public int health = 1;
-    private float detectionRange = 0.07f;
+    private float detectionRange = 0.13f;
     private void Awake()
     {
         m_playerControls = new PlayerControls();
