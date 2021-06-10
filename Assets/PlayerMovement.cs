@@ -15,7 +15,7 @@ public class PlayerMovement : MonoBehaviour
     private bool canJump =true;
     private Vector3 playerVelocity;
     public int health = 1;
-    private float detectionRange = 0.13f;
+    private float detectionRange = 0.05f;
     private void Awake()
     {
         m_playerControls = new PlayerControls();
@@ -54,8 +54,8 @@ public class PlayerMovement : MonoBehaviour
     }
     private void FixedUpdate() {
         RaycastHit hit;
-        Debug.DrawRay(GO.transform.position, transform.TransformDirection (Vector3.down) * detectionRange, Color.yellow);
-        if(Physics.Raycast(GO.transform.position, Vector3.down, out hit, detectionRange))       // detectionRange can blive sat op for at øge hvornår man rammer jorden så man kan hoppe igen OPS!! hvis den er for høj kan man hoppe 2 gange
+        Debug.DrawRay(GO.transform.position + new Vector3(0.0f,0.05f,0.0f), transform.TransformDirection (Vector3.down) * detectionRange, Color.yellow);
+        if(Physics.Raycast(GO.transform.position + new Vector3(0.0f,0.05f,0.0f), Vector3.down, out hit, detectionRange))       // detectionRange can blive sat op for at øge hvornår man rammer jorden så man kan hoppe igen OPS!! hvis den er for høj kan man hoppe 2 gange
         {
             if(hit.collider != null)
             {
@@ -71,6 +71,8 @@ public class PlayerMovement : MonoBehaviour
             canJump = false;
             animator.SetTrigger("isJumping");
             player.AddForce(Vector3.up * jumpHeight);
+            new WaitForSecondsRealtime(0.5f);
+            canJump = false;
         }
 
     }
