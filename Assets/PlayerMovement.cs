@@ -13,8 +13,11 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float runSpeed = 5f;
     [SerializeField] private float jumpHeight = 250f;
     private bool isGrounded = true;
+
+    private bool ballForm = false;
     private Vector3 playerVelocity;
     public int health = 1;
+
 
     private void Awake()
     {
@@ -23,13 +26,33 @@ public class PlayerMovement : MonoBehaviour
         animator = GetComponent<Animator>();
         //player.constraints = RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotationZ;
 
+
+
         m_playerControls.Controls.Jump.performed += Jump;
         //m_playerControls.Controls.Movement.performed += ctx => Move(ctx);
     }
     void Update()
     {
-        float movementFloat = m_playerControls.Controls.Movement.ReadValue<float>();
 
+
+        var v = m_playerControls.Controls.BallForm.ReadValue<float>();
+
+        if (v == 1 && ballForm == false)
+        {
+            BallForm();
+        }
+        else if (v == 0 && ballForm == true)
+        {
+            NotBallForm();
+
+        }
+
+
+
+    }
+    void FixedUpdate()
+    {
+        float movementFloat = m_playerControls.Controls.Movement.ReadValue<float>();
         switch (movementFloat)
         {
             case 1:
@@ -50,7 +73,42 @@ public class PlayerMovement : MonoBehaviour
                 animator.SetBool("isRunning", false);
                 break;
         }
+    }
 
+    void BallForm()
+    {
+        ballForm = true;
+        animator.enabled = false;
+
+        gameObject.transform.GetChild(0).gameObject.SetActive(false);
+        gameObject.transform.GetChild(1).gameObject.SetActive(false);
+        gameObject.transform.GetChild(2).gameObject.SetActive(true);
+
+        gameObject.GetComponent<BoxCollider>().enabled = false;
+        gameObject.GetComponent<SphereCollider>().enabled = true;
+
+        // Ball form
+        player.constraints = RigidbodyConstraints.None;
+        player.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY;
+        //player.constraints = ~RigidbodyConstraints.FreezeRotationZ;
+    }
+    void NotBallForm()
+    {
+        ballForm = false;
+        animator.enabled = true;
+
+        gameObject.transform.GetChild(0).gameObject.SetActive(true);
+        gameObject.transform.GetChild(1).gameObject.SetActive(true);
+        gameObject.transform.GetChild(2).gameObject.SetActive(false);
+
+        gameObject.GetComponent<BoxCollider>().enabled = true;
+        gameObject.GetComponent<SphereCollider>().enabled = false;
+
+        player.constraints = RigidbodyConstraints.None;
+        player.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
+        //player.constraints = RigidbodyConstraints.FreezeRotationZ;
+
+        player.transform.rotation = Quaternion.identity;
     }
     void Jump(InputAction.CallbackContext ctx)
     {
@@ -65,8 +123,11 @@ public class PlayerMovement : MonoBehaviour
     public void TakeDamage()
     {
         health = health - 1;
-        if(health <= 0)
+        if (health <= 0)
         {
+            Debug.Log("Du død");
+            //animator.enabled = false;
+            //player.constraints = RigidbodyConstraints.None;
             Destroy(GO);
             Scene active_scene = SceneManager.GetActiveScene();
             SceneManager.LoadScene(active_scene.name);
@@ -103,5 +164,6 @@ public class PlayerMovement : MonoBehaviour
     {
         m_playerControls.Controls.Disable();
     }
+
 
 }
