@@ -238,7 +238,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  rigidbody: {fileID: 0}
+  rigid: {fileID: 0}
   boxCollider: {fileID: 0}
 --- !u!114 &391446550163587979
 MonoBehaviour:
@@ -254,7 +254,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_ImpulseDefinition:
     m_ImpulseChannel: 1
-    m_RawSignal: {fileID: 0}
+    m_RawSignal: {fileID: 11400000, guid: 34995aeb86be7ce4481121d51bc08101, type: 2}
     m_AmplitudeGain: 1
     m_FrequencyGain: 1
     m_RepeatMode: 0
