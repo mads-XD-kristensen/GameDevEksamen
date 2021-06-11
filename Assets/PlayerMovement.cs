@@ -45,27 +45,6 @@ public class PlayerMovement : MonoBehaviour
 
         }
 
-        float movementFloat = m_playerControls.Controls.Movement.ReadValue<float>();
-        switch (movementFloat)
-        {
-            case 1:
-                // Move forward
-                animator.SetBool("isRunning", true);
-                player.transform.position += Vector3.right * runSpeed * Time.deltaTime;
-                //player.transform.rotation = Quaternion.RotateTowards(player.transform.rotation, Quaternion.LookRotation(-Vector3.right), 1000f * Time.deltaTime);
-                player.transform.right = -Vector3.right;
-                break;
-            case -1:
-                // Move backwards
-                animator.SetBool("isRunning", true);
-                player.transform.position += Vector3.left * runSpeed * Time.deltaTime;
-                //player.transform.rotation = Quaternion.RotateTowards(player.transform.rotation, Quaternion.LookRotation(-Vector3.left), 1000f * Time.deltaTime);
-                player.transform.right = -Vector3.left;
-                break;
-            default:
-                animator.SetBool("isRunning", false);
-                break;
-        }
     }
 
     void BallForm()
@@ -120,6 +99,27 @@ public class PlayerMovement : MonoBehaviour
             } else{
                 canJump = true;
             }
+        }
+        float movementFloat = m_playerControls.Controls.Movement.ReadValue<float>();
+        switch (movementFloat)
+        {
+            case 1:
+                // Move forward
+                animator.SetBool("isRunning", true);
+                player.transform.position += Vector3.right * runSpeed * Time.deltaTime;
+                //player.transform.rotation = Quaternion.RotateTowards(player.transform.rotation, Quaternion.LookRotation(-Vector3.right), 1000f * Time.deltaTime);
+                player.transform.right = -Vector3.right;
+                break;
+            case -1:
+                // Move backwards
+                animator.SetBool("isRunning", true);
+                player.transform.position += Vector3.left * runSpeed * Time.deltaTime;
+                //player.transform.rotation = Quaternion.RotateTowards(player.transform.rotation, Quaternion.LookRotation(-Vector3.left), 1000f * Time.deltaTime);
+                player.transform.right = -Vector3.left;
+                break;
+            default:
+                animator.SetBool("isRunning", false);
+                break;
         }
     }
     void Jump(InputAction.CallbackContext ctx)
