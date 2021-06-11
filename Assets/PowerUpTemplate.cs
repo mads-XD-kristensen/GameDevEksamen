@@ -5,6 +5,7 @@ using UnityEngine;
 public class PowerUpTemplate : MonoBehaviour
 {
     public GameObject pickupEffect;
+    public GameObject player;
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -16,8 +17,17 @@ public class PowerUpTemplate : MonoBehaviour
     void Pickup(Collider player)
     {
         Instantiate(pickupEffect, transform.position, transform.rotation);
-
+        //Instantiate(pickupEffect);
         //Put effect here
+        //gameObject.SetActive(false);
+        PlayerMovement PM = player.GetComponent<PlayerMovement>();
+        if (PM == null)
+        {
+            PM = player.transform.parent.GetComponent<PlayerMovement>();
+        }
+        PM.OneUp();
+
+
 
         Destroy(gameObject);
     }

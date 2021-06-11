@@ -33,6 +33,14 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": ""Press""
+                },
+                {
+                    ""name"": ""BallForm"",
+                    ""type"": ""Button"",
+                    ""id"": ""17177610-93ed-4960-853d-da82ca884b0e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press""
                 }
             ],
             ""bindings"": [
@@ -79,6 +87,17 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""action"": ""Movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6f1c1291-8998-4a97-a32e-978660d3e4ab"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": ""Hold"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""BallForm"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -89,6 +108,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         m_Controls = asset.FindActionMap("Controls", throwIfNotFound: true);
         m_Controls_Jump = m_Controls.FindAction("Jump", throwIfNotFound: true);
         m_Controls_Movement = m_Controls.FindAction("Movement", throwIfNotFound: true);
+        m_Controls_BallForm = m_Controls.FindAction("BallForm", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -140,12 +160,14 @@ public class @PlayerControls : IInputActionCollection, IDisposable
     private IControlsActions m_ControlsActionsCallbackInterface;
     private readonly InputAction m_Controls_Jump;
     private readonly InputAction m_Controls_Movement;
+    private readonly InputAction m_Controls_BallForm;
     public struct ControlsActions
     {
         private @PlayerControls m_Wrapper;
         public ControlsActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Jump => m_Wrapper.m_Controls_Jump;
         public InputAction @Movement => m_Wrapper.m_Controls_Movement;
+        public InputAction @BallForm => m_Wrapper.m_Controls_BallForm;
         public InputActionMap Get() { return m_Wrapper.m_Controls; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -161,6 +183,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @Movement.started -= m_Wrapper.m_ControlsActionsCallbackInterface.OnMovement;
                 @Movement.performed -= m_Wrapper.m_ControlsActionsCallbackInterface.OnMovement;
                 @Movement.canceled -= m_Wrapper.m_ControlsActionsCallbackInterface.OnMovement;
+                @BallForm.started -= m_Wrapper.m_ControlsActionsCallbackInterface.OnBallForm;
+                @BallForm.performed -= m_Wrapper.m_ControlsActionsCallbackInterface.OnBallForm;
+                @BallForm.canceled -= m_Wrapper.m_ControlsActionsCallbackInterface.OnBallForm;
             }
             m_Wrapper.m_ControlsActionsCallbackInterface = instance;
             if (instance != null)
@@ -171,6 +196,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @Movement.started += instance.OnMovement;
                 @Movement.performed += instance.OnMovement;
                 @Movement.canceled += instance.OnMovement;
+                @BallForm.started += instance.OnBallForm;
+                @BallForm.performed += instance.OnBallForm;
+                @BallForm.canceled += instance.OnBallForm;
             }
         }
     }
@@ -179,5 +207,6 @@ public class @PlayerControls : IInputActionCollection, IDisposable
     {
         void OnJump(InputAction.CallbackContext context);
         void OnMovement(InputAction.CallbackContext context);
+        void OnBallForm(InputAction.CallbackContext context);
     }
 }

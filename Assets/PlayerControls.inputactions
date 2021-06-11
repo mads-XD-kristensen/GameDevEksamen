@@ -20,6 +20,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "Press"
+                },
+                {
+                    "name": "BallForm",
+                    "type": "Button",
+                    "id": "17177610-93ed-4960-853d-da82ca884b0e",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press"
                 }
             ],
             "bindings": [
@@ -66,6 +74,17 @@
                     "action": "Movement",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "6f1c1291-8998-4a97-a32e-978660d3e4ab",
+                    "path": "<Keyboard>/s",
+                    "interactions": "Hold",
+                    "processors": "",
+                    "groups": "",
+                    "action": "BallForm",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }

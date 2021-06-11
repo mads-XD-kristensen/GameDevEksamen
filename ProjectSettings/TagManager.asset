@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Shootable
+  - Ground
   layers:
   - Default
   - TransparentFX
@@ -12,14 +13,11 @@ TagManager:
   - 
   - Water
   - UI
-<<<<<<< HEAD
-=======
+
   - Ground
   - 
   - PostProcessing
->>>>>>> daniel
-  - 
-  - 
+  - Player
   - Lighting
   - Ground
   - Postprocessing

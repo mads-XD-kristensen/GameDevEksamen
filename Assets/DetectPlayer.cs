@@ -6,12 +6,45 @@ public class DetectPlayer : MonoBehaviour
 {
     public GameObject player;
 
-    private void OnTriggerEnter(Collider other) {
-        if(other.gameObject == player)
+    public Rigidbody rigid;
+
+    private Animator CubeAnimator;
+
+    public BoxCollider boxCollider;
+
+    private int i = 0;
+
+
+    private void Start()
+    {
+        CubeAnimator = GetComponentInParent<Animator>();
+    }
+    void Update()
+    {
+        if (i == 1)
         {
-            // lose hp/powerup or restart level
+            gameObject.GetComponent<Cinemachine.CinemachineCollisionImpulseSource>().enabled = false;
+        }
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+
+
+        if (other.gameObject == player && i == 0)
+        {
+            i = i + 1;
+
+            Debug.Log(i);
+            CubeAnimator.enabled = false;
+            boxCollider.isTrigger = false;
+
+            rigid.isKinematic = false;
+            rigid.useGravity = true;
             Debug.Log("Du mistede liv eller genstart spil");
             player.GetComponent<PlayerMovement>().TakeDamage();
+
+
         }
+
     }
 }
