@@ -12,12 +12,14 @@ public class PlayerMovement : MonoBehaviour
     public PlayerControls m_playerControls;
     private Rigidbody player;
     [SerializeField] private float runSpeed = 5f;
+    [SerializeField] private float ballSpeed = 10f;
     [SerializeField] private float jumpHeight = 250f;
     private bool canJump = true;
     private Vector3 playerVelocity;
     public int health = 1;
     private float detectionRange = 110.05f;
     private bool ballForm = false;
+    public float torque;
 
 
     private void Awake()
@@ -31,8 +33,6 @@ public class PlayerMovement : MonoBehaviour
     }
     void Update()
     {
-
-
         var v = m_playerControls.Controls.BallForm.ReadValue<float>();
 
         if (v == 1 && ballForm == false)
@@ -51,6 +51,7 @@ public class PlayerMovement : MonoBehaviour
     {
         ballForm = true;
         animator.enabled = false;
+        GO.transform.Translate(0, 0.6f, 0, Space.World);
 
         gameObject.transform.GetChild(0).gameObject.SetActive(false);
         gameObject.transform.GetChild(1).gameObject.SetActive(false);
@@ -82,43 +83,89 @@ public class PlayerMovement : MonoBehaviour
         player.constraints = RigidbodyConstraints.None;
         player.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
 
-        player.transform.rotation = Quaternion.identity;
+        GO.transform.Translate(0, -0.6f, 0, Space.World);
     }
     private void FixedUpdate()
     {
+
         RaycastHit hit;
         Debug.DrawRay(GO.transform.position + new Vector3(0.0f, 0.55f, 0.0f), transform.TransformDirection(Vector3.down) * detectionRange, Color.yellow);
         if (Physics.Raycast(GO.transform.position + new Vector3(0.0f, 0.55f, 0.0f), Vector3.down, out hit, detectionRange))       // detectionRange can blive sat op for at øge hvornår man rammer jorden så man kan hoppe igen OPS!! hvis den er for høj kan man hoppe 2 gange
         {
-            if (hit.distance > 0.75)
+            if (hit.distance < 0.75 && ballForm == false)
             {
-                canJump = false;
+                canJump = true;
                 //Debug.Log(hit.collider.name); // for at debug hvad spiller rammer efter hop
                 //Debug.Log(canJump);
                 //Debug.Log(hit.distance);
-            } else{
-                canJump = true;
+            }
+            else
+            {
+                canJump = false;
             }
         }
+
         float movementFloat = m_playerControls.Controls.Movement.ReadValue<float>();
+
         switch (movementFloat)
         {
+
             case 1:
-                // Move forward
-                animator.SetBool("isRunning", true);
-                player.transform.position += Vector3.right * runSpeed * Time.deltaTime;
-                //player.transform.rotation = Quaternion.RotateTowards(player.transform.rotation, Quaternion.LookRotation(-Vector3.right), 1000f * Time.deltaTime);
-                player.transform.right = -Vector3.right;
+                if (ballForm == true)
+                {
+                    Vector2 directionR = Vector2.right;
+                    player.AddForce((1 * directionR) * ballSpeed);
+
+                }
+                else
+                {
+
+                    // Move forward
+                    animator.SetBool("isRunning", true);
+                    player.transform.position += Vector3.right * runSpeed * Time.deltaTime;
+                    //player.transform.rotation = Quaternion.RotateTowards(player.transform.rotation, Quaternion.LookRotation(-Vector3.right), 1000f * Time.deltaTime);
+                    player.transform.right = -Vector3.right;
+                }
                 break;
             case -1:
-                // Move backwards
-                animator.SetBool("isRunning", true);
-                player.transform.position += Vector3.left * runSpeed * Time.deltaTime;
-                //player.transform.rotation = Quaternion.RotateTowards(player.transform.rotation, Quaternion.LookRotation(-Vector3.left), 1000f * Time.deltaTime);
-                player.transform.right = -Vector3.left;
+                if (ballForm == true)
+                {
+                    Vector2 directionL = Vector2.left;
+                    //player.AddTorque(transform.up * torque * 100.0f);
+                    player.AddForce(directionL * ballSpeed);
+
+                }
+                else
+                {
+                    // Move backwards
+                    animator.SetBool("isRunning", true);
+                    player.transform.position += Vector3.left * runSpeed * Time.deltaTime;
+                    //player.transform.rotation = Quaternion.RotateTowards(player.transform.rotation, Quaternion.LookRotation(-Vector3.left), 1000f * Time.deltaTime);
+                    player.transform.right = -Vector3.left;
+                }
                 break;
             default:
                 animator.SetBool("isRunning", false);
+                Vector3 vel = player.velocity;
+                if (vel.x > 0.1f && ballForm == false)
+                {
+                    // right
+                    player.transform.right = -Vector3.right;
+                }
+                else if (vel.x < -0.1f && ballForm == false)
+                {
+                    // left
+                    player.transform.right = -Vector3.left;
+                }
+                else if (vel.x > -0.1f && vel.x < 0.1f && ballForm == false)
+                {
+                    player.transform.right = -Vector3.back;
+                }
+                else if (ballForm == true)
+                {
+                    player.transform.right = -Vector3.right;
+                }
+
                 break;
         }
     }
