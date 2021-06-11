@@ -55,11 +55,13 @@ public class PlayerMovement : MonoBehaviour
 
         gameObject.transform.GetChild(0).gameObject.SetActive(false);
         gameObject.transform.GetChild(1).gameObject.SetActive(false);
+        gameObject.transform.GetChild(3).gameObject.SetActive(false);
 
         GO.transform.Translate(0, 0.0f, 0, Space.World);
         gameObject.transform.GetChild(2).gameObject.SetActive(true);
 
         gameObject.GetComponent<BoxCollider>().enabled = false;
+        gameObject.GetComponent<CapsuleCollider>().enabled = false;
         gameObject.GetComponent<SphereCollider>().enabled = true;
 
         player.constraints = RigidbodyConstraints.None;
@@ -76,8 +78,10 @@ public class PlayerMovement : MonoBehaviour
         gameObject.transform.GetChild(0).gameObject.SetActive(true);
         gameObject.transform.GetChild(1).gameObject.SetActive(true);
         gameObject.transform.GetChild(2).gameObject.SetActive(false);
+        gameObject.transform.GetChild(3).gameObject.SetActive(true);
 
         gameObject.GetComponent<BoxCollider>().enabled = true;
+        gameObject.GetComponent<CapsuleCollider>().enabled = true;
         gameObject.GetComponent<SphereCollider>().enabled = false;
 
         player.constraints = RigidbodyConstraints.None;
