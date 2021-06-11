@@ -82,18 +82,24 @@ public class PlayerMovement : MonoBehaviour
 
         gameObject.transform.GetChild(0).gameObject.SetActive(false);
         gameObject.transform.GetChild(1).gameObject.SetActive(false);
+
+        GO.transform.Translate(0, 0.6f, 0, Space.World);
         gameObject.transform.GetChild(2).gameObject.SetActive(true);
 
         gameObject.GetComponent<BoxCollider>().enabled = false;
         gameObject.GetComponent<SphereCollider>().enabled = true;
 
-        // Ball form
         player.constraints = RigidbodyConstraints.None;
         player.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY;
-        //player.constraints = ~RigidbodyConstraints.FreezeRotationZ;
+
     }
     void NotBallForm()
     {
+
+        GO.transform.Translate(0, -0.6f, 0, Space.World);
+
+        GO.transform.rotation = Quaternion.identity;
+
         ballForm = false;
         animator.enabled = true;
 
@@ -106,7 +112,7 @@ public class PlayerMovement : MonoBehaviour
 
         player.constraints = RigidbodyConstraints.None;
         player.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
-        //player.constraints = RigidbodyConstraints.FreezeRotationZ;
+
 
         player.transform.rotation = Quaternion.identity;
     }

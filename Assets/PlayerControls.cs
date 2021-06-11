@@ -91,8 +91,8 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""6f1c1291-8998-4a97-a32e-978660d3e4ab"",
-                    ""path"": ""<Keyboard>/downArrow"",
-                    ""interactions"": ""Press"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": ""Hold"",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""BallForm"",
