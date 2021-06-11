@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: powerup_material_blue
-  m_Shader: {fileID: -6465566751694194690, guid: f9d778a2926702841926b6fece4292c8, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 05cb1aadce384ce4db27bc1b69a9035e, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 2
   m_EnableInstancingVariants: 0
