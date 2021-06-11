@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using System.Threading;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -15,7 +16,7 @@ public class PlayerMovement : MonoBehaviour
     private bool canJump = true;
     private Vector3 playerVelocity;
     public int health = 1;
-    private float detectionRange = 0.05f;
+    private float detectionRange = 110.05f;
     private bool ballForm = false;
 
 
@@ -24,7 +25,7 @@ public class PlayerMovement : MonoBehaviour
         m_playerControls = new PlayerControls();
         player = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
-        //player.constraints = RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotationZ;
+
         m_playerControls.Controls.Jump.performed += Jump;
         //m_playerControls.Controls.Movement.performed += ctx => Move(ctx);
     }
@@ -111,13 +112,17 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
         RaycastHit hit;
-        Debug.DrawRay(GO.transform.position + new Vector3(0.0f, 0.05f, 0.0f), transform.TransformDirection(Vector3.down) * detectionRange, Color.yellow);
-        if (Physics.Raycast(GO.transform.position + new Vector3(0.0f, 0.05f, 0.0f), Vector3.down, out hit, detectionRange))       // detectionRange can blive sat op for at øge hvornår man rammer jorden så man kan hoppe igen OPS!! hvis den er for høj kan man hoppe 2 gange
+        Debug.DrawRay(GO.transform.position + new Vector3(0.0f, 0.55f, 0.0f), transform.TransformDirection(Vector3.down) * detectionRange, Color.yellow);
+        if (Physics.Raycast(GO.transform.position + new Vector3(0.0f, 0.55f, 0.0f), Vector3.down, out hit, detectionRange))       // detectionRange can blive sat op for at øge hvornår man rammer jorden så man kan hoppe igen OPS!! hvis den er for høj kan man hoppe 2 gange
         {
-            if (hit.collider != null)
+            if (hit.distance > 0.75)
             {
+                canJump = false;
+                //Debug.Log(hit.collider.name); // for at debug hvad spiller rammer efter hop
+                //Debug.Log(canJump);
+                //Debug.Log(hit.distance);
+            } else{
                 canJump = true;
-                Debug.Log(hit.collider.name); // for at debug hvad spiller rammer efter hop
             }
         }
     }
@@ -125,13 +130,10 @@ public class PlayerMovement : MonoBehaviour
     {
         if (canJump)
         {
-            canJump = false;
             animator.SetTrigger("isJumping");
             player.AddForce(Vector3.up * jumpHeight);
-            new WaitForSecondsRealtime(0.5f);
             canJump = false;
         }
-
     }
     public void TakeDamage()
     {
