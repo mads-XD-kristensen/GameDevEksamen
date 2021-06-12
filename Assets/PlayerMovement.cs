@@ -15,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float dashSpeed = 250f;
     [SerializeField] private float ballSpeed = 10f;
     [SerializeField] private float jumpHeight = 250f;
+    [SerializeField] private float bulletSpeed = 300f;
     private bool canJump = true;
     private Vector3 playerVelocity;
     public int health = 1;
@@ -26,6 +27,7 @@ public class PlayerMovement : MonoBehaviour
     private float dashingTime = 0f;
     private bool dashReset = true;
     public bool canShoot = false;
+    public GameObject Bullet;
 
 
 
@@ -39,6 +41,7 @@ public class PlayerMovement : MonoBehaviour
 
         m_playerControls.Controls.Jump.performed += Jump;
         m_playerControls.Controls.Dash.performed += Dash;
+        m_playerControls.Controls.Shoot.performed += Shoot;
         //m_playerControls.Controls.Movement.performed += ctx => Move(ctx);
     }
     void Update()
@@ -84,12 +87,14 @@ public class PlayerMovement : MonoBehaviour
         GO.transform.Translate(0, 0.0f, 0, Space.World);
         gameObject.transform.GetChild(2).gameObject.SetActive(true);
 
+
         gameObject.GetComponent<BoxCollider>().enabled = false;
         gameObject.GetComponent<CapsuleCollider>().enabled = false;
         gameObject.GetComponent<SphereCollider>().enabled = true;
 
         player.constraints = RigidbodyConstraints.None;
-        player.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY;
+        player.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezePositionZ;
+
 
     }
     void NotBallForm()
@@ -109,7 +114,8 @@ public class PlayerMovement : MonoBehaviour
         gameObject.GetComponent<SphereCollider>().enabled = false;
 
         player.constraints = RigidbodyConstraints.None;
-        player.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
+        player.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezePositionZ;
+
 
         GO.transform.Translate(0, -0.6f, 0, Space.World);
     }
@@ -273,20 +279,45 @@ public class PlayerMovement : MonoBehaviour
     {
         if (canDash == true)
         {
-
-
-
             if (player.transform.right == -Vector3.left && dashReset == true)
             {
-                player.AddForce((Vector3.left * dashSpeed * Time.deltaTime) * 250);
+                player.AddForce((Vector3.left * dashSpeed * Time.deltaTime) * 65);
 
                 dashReset = false;
             }
             if (player.transform.right == -Vector3.right && dashReset == true)
             {
-                player.AddForce((Vector3.right * dashSpeed * Time.deltaTime) * 250);
+                player.AddForce((Vector3.right * dashSpeed * Time.deltaTime) * 65);
 
                 dashReset = false;
+            }
+        }
+
+    }
+
+    public void ShootTrue()
+    {
+
+        canShoot = true;
+    }
+
+    public void Shoot(InputAction.CallbackContext ctx)
+    {
+        if (canShoot == true)
+        {
+            if (player.transform.right == -Vector3.left)
+            {
+
+                //shoot left
+                GameObject newBullet = Instantiate(Bullet, new Vector3(player.transform.position.x - 0.3f, player.transform.position.y + 0.5f, transform.position.z), Quaternion.identity);
+                newBullet.GetComponent<Rigidbody>().AddForce((Vector3.left * bulletSpeed * Time.deltaTime) * 100);
+            }
+            if (player.transform.right == -Vector3.right)
+            {
+                //shoot right
+                GameObject newBullet = Instantiate(Bullet, new Vector3(player.transform.position.x + 0.3f, player.transform.position.y + 0.5f, transform.position.z), Quaternion.identity);
+                newBullet.GetComponent<Rigidbody>().AddForce((Vector3.right * dashSpeed * Time.deltaTime) * 100);
+
             }
         }
 

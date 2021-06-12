@@ -6,6 +6,8 @@ public class DetectPlayer : MonoBehaviour
 {
     public GameObject player;
 
+    public GameObject bullet;
+
     public Rigidbody rigid;
 
     private Animator CubeAnimator;
@@ -43,5 +45,16 @@ public class DetectPlayer : MonoBehaviour
             player.GetComponent<PlayerMovement>().TakeDamage();
         }
 
+        if (other.gameObject.tag == "Bullet")
+        {
+
+            i = i + 1;
+
+            CubeAnimator.enabled = false;
+            boxCollider.isTrigger = false;
+
+            rigid.isKinematic = false;
+            rigid.useGravity = true;
+        }
     }
 }

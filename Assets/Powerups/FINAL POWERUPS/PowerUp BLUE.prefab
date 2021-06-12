@@ -156,7 +156,7 @@ GameObject:
   - component: {fileID: 3335118546969730876}
   - component: {fileID: 3335118546969730877}
   - component: {fileID: 3335118546969730878}
-  - component: {fileID: 3335118546969730879}
+  - component: {fileID: 8956776794013224548}
   m_Layer: 0
   m_Name: PowerUp BLUE
   m_TagString: Untagged
@@ -211,7 +211,7 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.7
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &3335118546969730879
+--- !u!114 &8956776794013224548
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -220,11 +220,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 3335118546969730872}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 90f1939fbcceb7e44b66b09048d20c6b, type: 3}
+  m_Script: {fileID: 11500000, guid: 3e9eaf37f3e381049b9b73546a6cb1ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupEffect: {fileID: 2377830440469991367, guid: 0b0e0685a2b173d4fbb54eb561edda7f,
-    type: 3}
+  pickupEffect: {fileID: 0}
   player: {fileID: 0}
 --- !u!1 &3621927124049800937
 GameObject:
