@@ -10,6 +10,7 @@ public class Timer : MonoBehaviour
     public Text timeText;
     float minutes ;
     float seconds;
+    public PlayerMovement playerMovement;
 
     private void Start() {
         timerRunning = true;
@@ -20,6 +21,9 @@ public class Timer : MonoBehaviour
         {
             time += Time.deltaTime;
             DisplayTime(time);
+        }
+        if(playerMovement.health < 1){
+            timerRunning = false;
         }
     }
 
