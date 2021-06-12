@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18265426, g: 0.22560993, b: 0.29114056, a: 1}
+  m_IndirectSpecularColor: {r: 0.449947, g: 0.4973104, b: 0.56109774, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -350,7 +350,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 18, y: 4}
-  m_SizeDelta: {x: 162.2181, y: 69.9184}
+  m_SizeDelta: {x: 520.2891, y: 62.5608}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &59416431
 MonoBehaviour:
@@ -2902,7 +2902,7 @@ Transform:
   m_Children:
   - {fileID: 1431673373}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 20, y: 0, z: 0}
 --- !u!1 &650907877
 GameObject:
@@ -3320,7 +3320,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Menu
+  m_Text: Return to Main Menu
 --- !u!222 &686752988
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5626,6 +5626,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 919132149078520609}
+  rigid: {fileID: 0}
+  boxCollider: {fileID: 0}
 --- !u!1 &1408782269
 GameObject:
   m_ObjectHideFlags: 0
@@ -8394,6 +8396,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pickupEffect: {fileID: 3627073144147286897, guid: afb33ff6938a3b04caafb1b1ce97e194,
     type: 3}
+  player: {fileID: 0}
 --- !u!135 &1805926821592081673
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -8439,7 +8442,7 @@ Transform:
   m_Children:
   - {fileID: 1805926820806076431}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1805926821592081679
 GameObject:
