@@ -19,7 +19,7 @@ public class PlayerMovement : MonoBehaviour
     public int health = 1;
     private float detectionRange = 110.05f;
     private bool ballForm = false;
-    public float torque;
+
 
 
     private void Awake()
@@ -77,7 +77,6 @@ public class PlayerMovement : MonoBehaviour
         gameObject.transform.GetChild(0).gameObject.SetActive(true);
         gameObject.transform.GetChild(1).gameObject.SetActive(true);
         gameObject.transform.GetChild(2).gameObject.SetActive(false);
-
 
         gameObject.GetComponent<BoxCollider>().enabled = true;
         gameObject.GetComponent<CapsuleCollider>().enabled = true;
