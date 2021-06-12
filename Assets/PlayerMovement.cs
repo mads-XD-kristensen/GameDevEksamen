@@ -56,7 +56,6 @@ public class PlayerMovement : MonoBehaviour
         gameObject.transform.GetChild(0).gameObject.SetActive(false);
         gameObject.transform.GetChild(1).gameObject.SetActive(false);
 
-
         GO.transform.Translate(0, 0.0f, 0, Space.World);
         gameObject.transform.GetChild(2).gameObject.SetActive(true);
 
@@ -123,6 +122,14 @@ public class PlayerMovement : MonoBehaviour
                 }
                 else
                 {
+                    Vector3 v = player.velocity;
+                    if (v.x < 0f)
+                    {
+                        v.x = 2 * -v.x;
+
+                        player.AddForce(v);
+                    }
+
 
                     // Move forward
                     animator.SetBool("isRunning", true);
@@ -141,6 +148,15 @@ public class PlayerMovement : MonoBehaviour
                 }
                 else
                 {
+                    Vector3 v = player.velocity;
+                    if (v.x > 0f)
+                    {
+                        v.x = 2 * -v.x;
+                        player.AddForce(v);
+                    }
+
+
+
                     // Move backwards
                     animator.SetBool("isRunning", true);
                     player.transform.position += Vector3.left * runSpeed * Time.deltaTime;
@@ -168,6 +184,11 @@ public class PlayerMovement : MonoBehaviour
                 else if (ballForm == true)
                 {
                     player.transform.right = -Vector3.right;
+                }
+                else if (vel.x > -0.3f && vel.x < 0.3f && ballForm == false)
+                {
+                    vel.x = 0f;
+                    player.velocity = vel;
                 }
 
                 break;
