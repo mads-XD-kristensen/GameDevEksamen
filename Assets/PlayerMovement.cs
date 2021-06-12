@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
     public PlayerControls m_playerControls;
     private Rigidbody player;
     [SerializeField] private float runSpeed = 5f;
+    [SerializeField] private float dashSpeed = 250f;
     [SerializeField] private float ballSpeed = 10f;
     [SerializeField] private float jumpHeight = 250f;
     private bool canJump = true;
@@ -19,6 +20,14 @@ public class PlayerMovement : MonoBehaviour
     public int health = 1;
     private float detectionRange = 110.05f;
     private bool ballForm = false;
+
+    public bool canDash = false;
+    public float dashResetTime = 1f;
+    private float dashingTime = 0f;
+    private bool dashReset = true;
+    public bool canShoot = false;
+
+
 
 
 
@@ -29,6 +38,7 @@ public class PlayerMovement : MonoBehaviour
         animator = GetComponent<Animator>();
 
         m_playerControls.Controls.Jump.performed += Jump;
+        m_playerControls.Controls.Dash.performed += Dash;
         //m_playerControls.Controls.Movement.performed += ctx => Move(ctx);
     }
     void Update()
@@ -45,6 +55,20 @@ public class PlayerMovement : MonoBehaviour
 
         }
 
+        if (canDash)
+        {
+            if (dashReset == false)
+            {
+                dashingTime += Time.deltaTime;
+            }
+            if (dashingTime >= dashResetTime && dashReset == false)
+            {
+                dashReset = true;
+                dashingTime = 0f;
+
+            }
+        }
+
     }
 
     void BallForm()
@@ -55,6 +79,7 @@ public class PlayerMovement : MonoBehaviour
 
         gameObject.transform.GetChild(0).gameObject.SetActive(false);
         gameObject.transform.GetChild(1).gameObject.SetActive(false);
+        gameObject.transform.GetChild(3).gameObject.SetActive(false);
 
         GO.transform.Translate(0, 0.0f, 0, Space.World);
         gameObject.transform.GetChild(2).gameObject.SetActive(true);
@@ -77,6 +102,7 @@ public class PlayerMovement : MonoBehaviour
         gameObject.transform.GetChild(0).gameObject.SetActive(true);
         gameObject.transform.GetChild(1).gameObject.SetActive(true);
         gameObject.transform.GetChild(2).gameObject.SetActive(false);
+        gameObject.transform.GetChild(3).gameObject.SetActive(true);
 
         gameObject.GetComponent<BoxCollider>().enabled = true;
         gameObject.GetComponent<CapsuleCollider>().enabled = true;
@@ -192,6 +218,7 @@ public class PlayerMovement : MonoBehaviour
 
                 break;
         }
+
     }
     void Jump(InputAction.CallbackContext ctx)
     {
@@ -204,21 +231,65 @@ public class PlayerMovement : MonoBehaviour
     }
     public void TakeDamage()
     {
-        health = health - 1;
-        if (health <= 0)
+        if (canShoot == false && canDash == false)
         {
-            Debug.Log("Du død");
-            //animator.enabled = false;
-            //player.constraints = RigidbodyConstraints.None;
-            Destroy(GO);
-            Scene active_scene = SceneManager.GetActiveScene();
-            SceneManager.LoadScene(active_scene.name);
+            health = health - 1;
+            if (health <= 0)
+            {
+                Debug.Log("Du død");
+                //animator.enabled = false;
+                //player.constraints = RigidbodyConstraints.None;
+                Destroy(GO);
+                Scene active_scene = SceneManager.GetActiveScene();
+                SceneManager.LoadScene(active_scene.name);
+            }
         }
+        if (canDash == true && canShoot == false)
+        {
+            canDash = false;
+        }
+        if (canShoot == true && canDash == true)
+        {
+            canShoot = false;
+        }
+        if (canShoot == true && canDash == true)
+        {
+            canShoot = false;
+        }
+
     }
 
     public void OneUp()
     {
         health += 1;
+    }
+
+    public void DashTrue()
+    {
+        canDash = true;
+    }
+
+    public void Dash(InputAction.CallbackContext ctx)
+    {
+        if (canDash == true)
+        {
+
+
+
+            if (player.transform.right == -Vector3.left && dashReset == true)
+            {
+                player.AddForce((Vector3.left * dashSpeed * Time.deltaTime) * 250);
+
+                dashReset = false;
+            }
+            if (player.transform.right == -Vector3.right && dashReset == true)
+            {
+                player.AddForce((Vector3.right * dashSpeed * Time.deltaTime) * 250);
+
+                dashReset = false;
+            }
+        }
+
     }
 
     void OnEnable()

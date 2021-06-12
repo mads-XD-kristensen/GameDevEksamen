@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PowerUpTemplate : MonoBehaviour
+public class PowerUpDash : MonoBehaviour
 {
     public GameObject pickupEffect;
     public GameObject player;
@@ -26,6 +26,7 @@ public class PowerUpTemplate : MonoBehaviour
             PM = player.transform.parent.GetComponent<PlayerMovement>();
         }
         PM.OneUp();
+        PM.DashTrue();
 
 
 
