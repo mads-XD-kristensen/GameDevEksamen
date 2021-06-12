@@ -116,6 +116,7 @@ MonoBehaviour:
   time: 0
   timerRunning: 0
   timeText: {fileID: 7425363896664016369}
+  playerMovement: {fileID: 0}
 --- !u!1 &7425363896664016370
 GameObject:
   m_ObjectHideFlags: 0
