@@ -34,7 +34,6 @@ public class DetectPlayer : MonoBehaviour
         {
             i = i + 1;
 
-            Debug.Log(i);
             CubeAnimator.enabled = false;
             boxCollider.isTrigger = false;
 
@@ -42,8 +41,6 @@ public class DetectPlayer : MonoBehaviour
             rigid.useGravity = true;
             Debug.Log("Du mistede liv eller genstart spil");
             player.GetComponent<PlayerMovement>().TakeDamage();
-
-
         }
 
     }
