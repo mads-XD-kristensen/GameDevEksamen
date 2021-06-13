@@ -299,10 +299,20 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
+
     public int getDamageAmount()
+
     {
         return damageAmount;
     }
+
+    public void ShootTrue()
+    {
+
+        canShoot = true;
+    }
+
+
 
     void OnEnable()
     {
