@@ -66,6 +66,7 @@ public class EnemyAI : MonoBehaviour
 
     private void doDamage()
     {
+        Debug.Log("Player tager skade af enemy");
         playerScript.TakeDamage(damageToPlayerAmount);
     }
 
