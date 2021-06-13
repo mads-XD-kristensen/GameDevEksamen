@@ -16,6 +16,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float ballSpeed = 10f;
     [SerializeField] private float jumpHeight = 250f;
     [SerializeField] private int damageAmount = 1;
+
+    [SerializeField] private float bulletSpeed = 200f;
     private bool canJump = true;
     private Vector3 playerVelocity;
     public int health = 1;
@@ -312,6 +314,28 @@ public class PlayerMovement : MonoBehaviour
         canShoot = true;
     }
 
+
+    public void Shoot(InputAction.CallbackContext ctx)
+    {
+        if (canShoot == true)
+        {
+            if (player.transform.right == -Vector3.left)
+            {
+
+                //shoot left
+                GameObject newBullet = Instantiate(Bullet, new Vector3(player.transform.position.x - 0.3f, player.transform.position.y + 0.5f, transform.position.z), Quaternion.identity);
+                newBullet.GetComponent<Rigidbody>().AddForce((Vector3.left * bulletSpeed * Time.deltaTime) * 100);
+            }
+            if (player.transform.right == -Vector3.right)
+            {
+                //shoot right
+                GameObject newBullet = Instantiate(Bullet, new Vector3(player.transform.position.x + 0.3f, player.transform.position.y + 0.5f, transform.position.z), Quaternion.identity);
+                newBullet.GetComponent<Rigidbody>().AddForce((Vector3.right * bulletSpeed * Time.deltaTime) * 100);
+
+            }
+        }
+
+    }
 
 
     void OnEnable()
