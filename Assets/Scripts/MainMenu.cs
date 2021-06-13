@@ -7,6 +7,7 @@ public class MainMenu : MonoBehaviour {
 
     public GameObject mainPanel;
     public GameObject settingsPanel;
+    public Scene toLoad;
 
     // Update is called once per frame
     void Update()
@@ -15,7 +16,7 @@ public class MainMenu : MonoBehaviour {
     }
 
     public void StartGame() {
-        SceneManager.LoadScene("jannich_scene");
+        SceneManager.LoadScene("SquareLvl1");
     }
 
     public void EngageSettings() {

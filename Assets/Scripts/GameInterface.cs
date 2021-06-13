@@ -15,6 +15,7 @@ public class GameInterface : MonoBehaviour
     public GameObject heart1, heart2, heart3;
 
     private void Start() {
+        Time.timeScale = 1f;
         timerRunning = true;
 
         health = playerMovement.getHealth();

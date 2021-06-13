@@ -34,6 +34,7 @@ public class PauseMenu : MonoBehaviour {
 
     public void LoadMenu() {
         SceneManager.LoadScene("MainMenu"); // Do not hardcode Menu, make it a variable and load it in.
+
     }
 
     public void QuitGame() {
