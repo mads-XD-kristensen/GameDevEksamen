@@ -301,6 +301,7 @@ public class PlayerMovement : MonoBehaviour
         canShoot = true;
     }
 
+
     public void Shoot(InputAction.CallbackContext ctx)
     {
         if (canShoot == true)
