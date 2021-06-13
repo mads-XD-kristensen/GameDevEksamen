@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DetectPlayer : MonoBehaviour
+public class DetectPlayerBumper : MonoBehaviour
 {
     public GameObject player;
 
@@ -11,8 +11,7 @@ public class DetectPlayer : MonoBehaviour
     private Animator CubeAnimator;
 
     public BoxCollider boxCollider;
-    public EnemyAI enemyScript;
-    int enemyDamageAmount;
+
 
     private int i = 0;
 
@@ -20,7 +19,6 @@ public class DetectPlayer : MonoBehaviour
     private void Start()
     {
         CubeAnimator = GetComponentInParent<Animator>();
-        enemyDamageAmount = enemyScript.getDamageAmount();
     }
     void Update()
     {
@@ -43,7 +41,7 @@ public class DetectPlayer : MonoBehaviour
             rigid.isKinematic = false;
             rigid.useGravity = true;
             Debug.Log("Du mistede liv eller genstart spil");
-            player.GetComponent<PlayerMovement>().TakeDamage(enemyScript.getDamageAmount());
+            player.GetComponent<PlayerMovement>().TakeDamage(1);
         }
 
         if (other.gameObject.tag == "Bullet")
@@ -60,3 +58,4 @@ public class DetectPlayer : MonoBehaviour
         }
     }
 }
+

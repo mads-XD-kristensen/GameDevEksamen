@@ -16,6 +16,8 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] int damageToPlayerAmount;
     public PlayerMovement playerScript;
 
+    private bool dead = false;
+
 
     private void Awake()
     {
@@ -30,8 +32,15 @@ public class EnemyAI : MonoBehaviour
     {
         // Check om spiller er indenfor range
         //playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
+        if (dead == false)
+        {
+            ChasePlayer();
+        }
+        else
+        {
+            StopChasePlayer();
+        }
 
-        ChasePlayer();
 
         // State machine
         /* if (playerInSightRange)
@@ -62,6 +71,12 @@ public class EnemyAI : MonoBehaviour
         {
             doDamage();
         }
+        if (other.gameObject.tag == "Bullet")
+        {
+
+            Die();
+
+        }
     }
 
     private void doDamage()
@@ -78,6 +93,7 @@ public class EnemyAI : MonoBehaviour
         {
             Die();
         }
+
     }
 
     public int getDamageAmount()
@@ -89,6 +105,9 @@ public class EnemyAI : MonoBehaviour
     {
         damageToPlayerAmount = 0;
         animator.SetTrigger("isDead");
+        gameObject.GetComponent<Cinemachine.CinemachineCollisionImpulseSource>().enabled = false;
+        dead = true;
     }
+
 
 }

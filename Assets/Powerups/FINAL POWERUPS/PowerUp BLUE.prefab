@@ -223,7 +223,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e9eaf37f3e381049b9b73546a6cb1ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupEffect: {fileID: 0}
+  pickupEffect: {fileID: 2377830440469991367, guid: 0b0e0685a2b173d4fbb54eb561edda7f,
+    type: 3}
   player: {fileID: 0}
 --- !u!1 &3621927124049800937
 GameObject:
