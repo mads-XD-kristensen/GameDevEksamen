@@ -11,6 +11,8 @@ public class DetectPlayer : MonoBehaviour
     private Animator CubeAnimator;
 
     public BoxCollider boxCollider;
+    public EnemyAI enemyScript;
+    int enemyDamageAmount;
 
     private int i = 0;
 
@@ -18,6 +20,7 @@ public class DetectPlayer : MonoBehaviour
     private void Start()
     {
         CubeAnimator = GetComponentInParent<Animator>();
+        enemyDamageAmount = enemyScript.getDamageAmount();
     }
     void Update()
     {
@@ -40,7 +43,7 @@ public class DetectPlayer : MonoBehaviour
             rigid.isKinematic = false;
             rigid.useGravity = true;
             Debug.Log("Du mistede liv eller genstart spil");
-            player.GetComponent<PlayerMovement>().TakeDamage();
+            player.GetComponent<PlayerMovement>().TakeDamage(enemyScript.getDamageAmount());
         }
 
     }

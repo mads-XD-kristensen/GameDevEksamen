@@ -15,13 +15,15 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float dashSpeed = 250f;
     [SerializeField] private float ballSpeed = 10f;
     [SerializeField] private float jumpHeight = 250f;
+    [SerializeField] private int damageAmount = 1;
     private bool canJump = true;
     private Vector3 playerVelocity;
     public int health = 1;
     private float detectionRange = 110.05f;
     private bool ballForm = false;
 
-    public int getHealth() {
+    public int getHealth()
+    {
         return health;
     }
     public bool canDash = false;
@@ -232,11 +234,11 @@ public class PlayerMovement : MonoBehaviour
             canJump = false;
         }
     }
-    public void TakeDamage()
+    public void TakeDamage(int damageAmount)
     {
         if (canShoot == false && canDash == false)
         {
-            health = health - 1;
+            health = health - damageAmount;
             if (health <= 0)
             {
                 Debug.Log("Du død");
@@ -293,6 +295,11 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
+    }
+
+    public int getDamageAmount()
+    {
+        return damageAmount;
     }
 
     void OnEnable()
