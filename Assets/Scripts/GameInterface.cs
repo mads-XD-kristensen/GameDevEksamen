@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameInterface : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class GameInterface : MonoBehaviour
     public static int health;
     public GameObject heart1, heart2, heart3;
     public GameObject dash, shoot;
+    public SaveTime st;
 
     private void Start() {
         Time.timeScale = 1f;
@@ -75,6 +77,11 @@ public class GameInterface : MonoBehaviour
         {
             time += Time.deltaTime;
             DisplayTime(time);
+            if(SceneManager.GetActiveScene().buildIndex == 1){
+                st.besttime1 = time;
+            }else if(SceneManager.GetActiveScene().buildIndex == 2){
+                st.besttime2 = time;
+            }
         }
         
         if(playerMovement.health < 1){
