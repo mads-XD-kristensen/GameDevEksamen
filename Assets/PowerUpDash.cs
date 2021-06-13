@@ -25,7 +25,6 @@ public class PowerUpDash : MonoBehaviour
         {
             PM = player.transform.parent.GetComponent<PlayerMovement>();
         }
-        PM.OneUp();
         PM.DashTrue();
 
 

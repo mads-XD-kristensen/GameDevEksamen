@@ -31,6 +31,7 @@ public class PlayerMovement : MonoBehaviour
     private float dashingTime = 0f;
     private bool dashReset = true;
     public bool canShoot = false;
+    public GameObject Bullet;
 
 
 
@@ -44,6 +45,7 @@ public class PlayerMovement : MonoBehaviour
 
         m_playerControls.Controls.Jump.performed += Jump;
         m_playerControls.Controls.Dash.performed += Dash;
+        m_playerControls.Controls.Shoot.performed += Shoot;
         //m_playerControls.Controls.Movement.performed += ctx => Move(ctx);
     }
     void Update()
@@ -89,12 +91,14 @@ public class PlayerMovement : MonoBehaviour
         GO.transform.Translate(0, 0.0f, 0, Space.World);
         gameObject.transform.GetChild(2).gameObject.SetActive(true);
 
+
         gameObject.GetComponent<BoxCollider>().enabled = false;
         gameObject.GetComponent<CapsuleCollider>().enabled = false;
         gameObject.GetComponent<SphereCollider>().enabled = true;
 
         player.constraints = RigidbodyConstraints.None;
-        player.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY;
+        player.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezePositionZ;
+
 
     }
     void NotBallForm()
@@ -114,7 +118,8 @@ public class PlayerMovement : MonoBehaviour
         gameObject.GetComponent<SphereCollider>().enabled = false;
 
         player.constraints = RigidbodyConstraints.None;
-        player.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
+        player.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezePositionZ;
+
 
         GO.transform.Translate(0, -0.6f, 0, Space.World);
     }
@@ -278,18 +283,15 @@ public class PlayerMovement : MonoBehaviour
     {
         if (canDash == true)
         {
-
-
-
             if (player.transform.right == -Vector3.left && dashReset == true)
             {
-                player.AddForce((Vector3.left * dashSpeed * Time.deltaTime) * 250);
+                player.AddForce((Vector3.left * dashSpeed * Time.deltaTime) * 65);
 
                 dashReset = false;
             }
             if (player.transform.right == -Vector3.right && dashReset == true)
             {
-                player.AddForce((Vector3.right * dashSpeed * Time.deltaTime) * 250);
+                player.AddForce((Vector3.right * dashSpeed * Time.deltaTime) * 65);
 
                 dashReset = false;
             }
