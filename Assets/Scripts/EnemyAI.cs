@@ -70,22 +70,25 @@ public class EnemyAI : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Player")
+        if (dead == false)
         {
-            doDamage();
-            if (rBody.transform.position.x > player.transform.position.x)
+            if (other.gameObject.tag == "Player")
             {
-                Vector3 direction = (new Vector3(-(rBody.transform.position.x + player.transform.position.x), 0f, 0f)).normalized;
-                player.GetComponent<Rigidbody>().AddForce(direction * pushDistance * 2);
-                rBody.AddForce(-direction * pushDistance * 2);
-            }
-            else
-            {
-                Vector3 direction = (new Vector3(rBody.transform.position.x + player.transform.position.x, 0f, 0f)).normalized;
-                player.GetComponent<Rigidbody>().AddForce(direction * pushDistance * 2);
-                rBody.AddForce(-direction * pushDistance * 2);
-            }
+                doDamage();
+                if (rBody.transform.position.x > player.transform.position.x)
+                {
+                    Vector3 direction = (new Vector3(-(rBody.transform.position.x + player.transform.position.x), 0f, 0f)).normalized;
+                    player.GetComponent<Rigidbody>().AddForce(direction * pushDistance * 5);
+                    rBody.AddForce(-(direction * pushDistance * 2));
+                }
+                else
+                {
+                    Vector3 direction = (new Vector3(rBody.transform.position.x + player.transform.position.x, 0f, 0f)).normalized;
+                    player.GetComponent<Rigidbody>().AddForce(direction * pushDistance * 5);
+                    rBody.AddForce(-(direction * pushDistance * 2));
+                }
 
+            }
         }
         if (other.gameObject.tag == "Bullet")
         {
@@ -98,7 +101,7 @@ public class EnemyAI : MonoBehaviour
     private void doDamage()
     {
         Debug.Log("Player tager skade af enemy");
-        playerScript.TakeDamage(damageToPlayerAmount);
+        playerScript.TakeDamage();
     }
 
     private void TakeDamage(int damage)

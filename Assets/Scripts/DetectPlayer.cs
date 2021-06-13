@@ -43,7 +43,7 @@ public class DetectPlayer : MonoBehaviour
             rigid.isKinematic = false;
             rigid.useGravity = true;
             Debug.Log("Du mistede liv eller genstart spil");
-            player.GetComponent<PlayerMovement>().TakeDamage(enemyScript.getDamageAmount());
+            player.GetComponent<PlayerMovement>().TakeDamage();
         }
 
         if (other.gameObject.tag == "Bullet")

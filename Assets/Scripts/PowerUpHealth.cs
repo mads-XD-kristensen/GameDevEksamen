@@ -16,18 +16,15 @@ public class PowerUpHealth : MonoBehaviour
     }
     void Pickup(Collider player)
     {
+        Debug.Log("hej");
         Instantiate(pickupEffect, transform.position, transform.rotation);
-        //Instantiate(pickupEffect);
-        //Put effect here
-        //gameObject.SetActive(false);
+
         PlayerMovement PM = player.GetComponent<PlayerMovement>();
         if (PM == null)
         {
             PM = player.transform.parent.GetComponent<PlayerMovement>();
         }
         PM.OneUp();
-
-
 
         Destroy(gameObject);
     }
