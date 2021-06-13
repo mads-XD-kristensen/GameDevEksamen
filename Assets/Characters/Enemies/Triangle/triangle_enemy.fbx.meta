@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 19f93c58c4aacbf44bca18eb71efe3f1
+guid: 254d12f7d0e54624e80f433560bcfae9
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable:
@@ -11,19 +11,22 @@ ModelImporter:
     second: Armature|Death
   - first:
       74: -8945691123924629249
-    second: Armature|Idle
+    second: TriangleEnemy|Idle
   - first:
       74: 1079665108409675491
-    second: Armature|Jump
+    second: TriangleEnemy|Jump
   - first:
       74: -7551964380084998518
-    second: Armature|Run
+    second: TriangleEnemy|Run
   - first:
       74: 6503710843971187167
-    second: Armature|Run (1)
+    second: Armature|Run
   - first:
       74: -236022367644965580
-    second: Armature|Idle (1)
+    second: Armature|Idle (Looped)
+  - first:
+      74: 3374929961663135996
+    second: TriangleEnemy|Death
   externalObjects:
   - first:
       type: UnityEngine:Material
@@ -68,11 +71,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Armature|Idle (1)
-      takeName: Armature|Idle
+      name: TriangleEnemy|Run
+      takeName: Armature|Run
       internalID: 0
       firstFrame: 0
-      lastFrame: 39
+      lastFrame: 19
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -97,7 +100,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Armature|Death
+      name: TriangleEnemy|Death
       takeName: Armature|Death
       internalID: 0
       firstFrame: 0
@@ -126,7 +129,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Armature|Idle
+      name: TriangleEnemy|Idle
       takeName: Armature|Idle
       internalID: 0
       firstFrame: 0
@@ -137,8 +140,8 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
-      loopBlend: 0
+      loopTime: 1
+      loopBlend: 1
       loopBlendOrientation: 0
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
@@ -155,7 +158,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Armature|Jump
+      name: TriangleEnemy|Jump
       takeName: Armature|Jump
       internalID: 0
       firstFrame: 0
@@ -168,35 +171,6 @@ ModelImporter:
       hasAdditiveReferencePose: 0
       loopTime: 0
       loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask: []
-      maskType: 3
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
-    - serializedVersion: 16
-      name: Armature|Run
-      takeName: Armature|Run
-      internalID: 0
-      firstFrame: 0
-      lastFrame: 19
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 1
-      loopBlend: 1
       loopBlendOrientation: 0
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
