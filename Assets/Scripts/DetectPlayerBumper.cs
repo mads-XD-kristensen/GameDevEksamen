@@ -41,7 +41,7 @@ public class DetectPlayerBumper : MonoBehaviour
             rigid.isKinematic = false;
             rigid.useGravity = true;
             Debug.Log("Du mistede liv eller genstart spil");
-            player.GetComponent<PlayerMovement>().TakeDamage(1);
+            player.GetComponent<PlayerMovement>().TakeDamage();
         }
 
         if (other.gameObject.tag == "Bullet")

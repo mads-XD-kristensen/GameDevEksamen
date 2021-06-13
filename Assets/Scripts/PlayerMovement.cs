@@ -52,6 +52,7 @@ public class PlayerMovement : MonoBehaviour
     }
     void Update()
     {
+
         var v = m_playerControls.Controls.BallForm.ReadValue<float>();
 
         if (v == 1 && ballForm == false)
@@ -241,57 +242,50 @@ public class PlayerMovement : MonoBehaviour
             canJump = false;
         }
     }
-    public void TakeDamage(int damageAmount)
+    public void TakeDamage()
     {
-        if (canShoot == false && canDash == false)
+        health = health - 1;
+        if (health <= 0)
         {
-            health = health - damageAmount;
-            if (health <= 0)
-            {
-                Debug.Log("Du død");
-                Scene active_scene = SceneManager.GetActiveScene();
-                SceneManager.LoadScene(active_scene.name);
-            }
+            Debug.Log("Du død");
+            Scene active_scene = SceneManager.GetActiveScene();
+            SceneManager.LoadScene(active_scene.name);
         }
+
         if (canDash == true && canShoot == false)
         {
             canDash = false;
-            health = health - damageAmount;
-            if (health <= 0)
-            {
-                Debug.Log("Du død");
-                Scene active_scene = SceneManager.GetActiveScene();
-                SceneManager.LoadScene(active_scene.name);
-            }
+
+        }
+        if (canDash == false && canShoot == true)
+        {
+            canShoot = false;
+
         }
         if (canShoot == true && canDash == true)
         {
             canShoot = false;
-            health = health - damageAmount;
-            if (health <= 0)
-            {
-                Debug.Log("Du død");
-                Scene active_scene = SceneManager.GetActiveScene();
-                SceneManager.LoadScene(active_scene.name);
-            }
+
         }
-        if (canShoot == true && canDash == true)
-        {
-            canShoot = false;
-            health = health - damageAmount;
-            if (health <= 0)
-            {
-                Debug.Log("Du død");
-                Scene active_scene = SceneManager.GetActiveScene();
-                SceneManager.LoadScene(active_scene.name);
-            }
-        }
+
+        Debug.Log(health);
 
     }
 
     public void OneUp()
     {
-        health += 1;
+        Debug.Log("health now: " + health);
+        if (health == 2)
+        {
+            health = 3;
+        }
+        if (health == 1)
+        {
+            health = 2;
+        }
+
+        //health = health + 1;
+
     }
 
     public void DashTrue()
