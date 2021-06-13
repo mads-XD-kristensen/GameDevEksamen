@@ -13,10 +13,10 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] int health;
     Animator animator;
     int playerDamageAmount;
-    [SerializeField] int damageToPlayerAmount;
+    public int damageToPlayerAmount = 1;
     public PlayerMovement playerScript;
 
-    public float pushDistance = 0.1f;
+    public float pushDistance = 100f;
     private bool dead = false;
 
     public Rigidbody rBody;
@@ -73,8 +73,19 @@ public class EnemyAI : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             doDamage();
-            Vector3 direction = new Vector3(rBody.transform.position.x - player.transform.position.x, 0f, 0f);
-            //player.GetComponent<Rigidbody>.AddForce(direction * pushDistance); 
+            if (rBody.transform.position.x > player.transform.position.x)
+            {
+                Vector3 direction = (new Vector3(-(rBody.transform.position.x + player.transform.position.x), 0f, 0f)).normalized;
+                player.GetComponent<Rigidbody>().AddForce(direction * pushDistance * 2);
+                rBody.AddForce(-direction * pushDistance * 2);
+            }
+            else
+            {
+                Vector3 direction = (new Vector3(rBody.transform.position.x + player.transform.position.x, 0f, 0f)).normalized;
+                player.GetComponent<Rigidbody>().AddForce(direction * pushDistance * 2);
+                rBody.AddForce(-direction * pushDistance * 2);
+            }
+
         }
         if (other.gameObject.tag == "Bullet")
         {

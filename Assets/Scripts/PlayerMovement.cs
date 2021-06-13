@@ -249,9 +249,6 @@ public class PlayerMovement : MonoBehaviour
             if (health <= 0)
             {
                 Debug.Log("Du død");
-                //animator.enabled = false;
-                //player.constraints = RigidbodyConstraints.None;
-                //Destroy(GO);
                 Scene active_scene = SceneManager.GetActiveScene();
                 SceneManager.LoadScene(active_scene.name);
             }
@@ -259,14 +256,35 @@ public class PlayerMovement : MonoBehaviour
         if (canDash == true && canShoot == false)
         {
             canDash = false;
+            health = health - damageAmount;
+            if (health <= 0)
+            {
+                Debug.Log("Du død");
+                Scene active_scene = SceneManager.GetActiveScene();
+                SceneManager.LoadScene(active_scene.name);
+            }
         }
         if (canShoot == true && canDash == true)
         {
             canShoot = false;
+            health = health - damageAmount;
+            if (health <= 0)
+            {
+                Debug.Log("Du død");
+                Scene active_scene = SceneManager.GetActiveScene();
+                SceneManager.LoadScene(active_scene.name);
+            }
         }
         if (canShoot == true && canDash == true)
         {
             canShoot = false;
+            health = health - damageAmount;
+            if (health <= 0)
+            {
+                Debug.Log("Du død");
+                Scene active_scene = SceneManager.GetActiveScene();
+                SceneManager.LoadScene(active_scene.name);
+            }
         }
 
     }
