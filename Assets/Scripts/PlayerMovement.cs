@@ -17,7 +17,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float jumpHeight = 250f;
     [SerializeField] private int damageAmount = 1;
 
-    [SerializeField] private float bulletSpeed = 200f;
+    [SerializeField] private float bulletSpeed = 700f;
     private bool canJump = true;
     private Vector3 playerVelocity;
     public int health = 1;
@@ -251,7 +251,7 @@ public class PlayerMovement : MonoBehaviour
                 Debug.Log("Du død");
                 //animator.enabled = false;
                 //player.constraints = RigidbodyConstraints.None;
-                Destroy(GO);
+                //Destroy(GO);
                 Scene active_scene = SceneManager.GetActiveScene();
                 SceneManager.LoadScene(active_scene.name);
             }
@@ -287,13 +287,13 @@ public class PlayerMovement : MonoBehaviour
         {
             if (player.transform.right == -Vector3.left && dashReset == true)
             {
-                player.AddForce((Vector3.left * dashSpeed * Time.deltaTime) * 65);
+                player.AddForce((Vector3.left * dashSpeed * Time.deltaTime) * 165);
 
                 dashReset = false;
             }
             if (player.transform.right == -Vector3.right && dashReset == true)
             {
-                player.AddForce((Vector3.right * dashSpeed * Time.deltaTime) * 65);
+                player.AddForce((Vector3.right * dashSpeed * Time.deltaTime) * 165);
 
                 dashReset = false;
             }
@@ -324,13 +324,13 @@ public class PlayerMovement : MonoBehaviour
 
                 //shoot left
                 GameObject newBullet = Instantiate(Bullet, new Vector3(player.transform.position.x - 0.3f, player.transform.position.y + 0.5f, transform.position.z), Quaternion.identity);
-                newBullet.GetComponent<Rigidbody>().AddForce((Vector3.left * bulletSpeed * Time.deltaTime) * 100);
+                newBullet.GetComponent<Rigidbody>().AddForce((Vector3.left * bulletSpeed * Time.deltaTime) * 400);
             }
             if (player.transform.right == -Vector3.right)
             {
                 //shoot right
                 GameObject newBullet = Instantiate(Bullet, new Vector3(player.transform.position.x + 0.3f, player.transform.position.y + 0.5f, transform.position.z), Quaternion.identity);
-                newBullet.GetComponent<Rigidbody>().AddForce((Vector3.right * bulletSpeed * Time.deltaTime) * 100);
+                newBullet.GetComponent<Rigidbody>().AddForce((Vector3.right * bulletSpeed * Time.deltaTime) * 400);
 
             }
         }
@@ -346,6 +346,13 @@ public class PlayerMovement : MonoBehaviour
     void OnDisable()
     {
         m_playerControls.Controls.Disable();
+    }
+    void Recoil()
+    {
+
+        player.transform.position += Vector3.right * runSpeed * Time.deltaTime;
+        player.transform.position += Vector3.left * runSpeed * Time.deltaTime;
+
     }
 
 
