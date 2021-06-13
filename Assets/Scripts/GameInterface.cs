@@ -13,6 +13,7 @@ public class GameInterface : MonoBehaviour
     public PlayerMovement playerMovement;
     public static int health;
     public GameObject heart1, heart2, heart3;
+    public GameObject dash, shoot;
 
     private void Start() {
         Time.timeScale = 1f;
@@ -24,6 +25,8 @@ public class GameInterface : MonoBehaviour
         heart1.gameObject.SetActive(true);
         heart2.gameObject.SetActive(false);
         heart3.gameObject.SetActive(false);
+        dash.gameObject.SetActive(false);
+        shoot.gameObject.SetActive(false);
     }
 
     void Update()
@@ -56,11 +59,24 @@ public class GameInterface : MonoBehaviour
                 break;
         }
 
+        if(playerMovement.canDash){
+            dash.gameObject.SetActive(true);
+        }else{
+            dash.gameObject.SetActive(false);
+        }
+
+        if(playerMovement.canShoot){
+            shoot.gameObject.SetActive(true);
+        }else{
+            shoot.gameObject.SetActive(false);
+        }
+
         if(timerRunning)
         {
             time += Time.deltaTime;
             DisplayTime(time);
         }
+        
         if(playerMovement.health < 1){
             timerRunning = false;
         }
