@@ -9,6 +9,12 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: 6d3233227a845bf459c5fba246483f8c
   - enabled: 1
+    path: Assets/Scenes/CircleLvl1.unity
+    guid: cf0c324a7916c614d8728ced681ce1de
+  - enabled: 1
+    path: Assets/Scenes/TriangleLvl1.unity
+    guid: 32da41119a75f514ca41adbdbde83328
+  - enabled: 1
     path: Assets/Scenes/SquareLvl1.unity
     guid: 8d4b9737b7a16d8419cfd7ab6944c9a3
   m_configObjects:

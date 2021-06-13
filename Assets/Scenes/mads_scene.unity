@@ -317,9 +317,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GO: {fileID: 151491945}
   runSpeed: 5
+  dashSpeed: 250
   ballSpeed: 10
   jumpHeight: 350
+  damageAmount: 1
+  bulletSpeed: 200
   health: 1
+  canDash: 0
+  dashResetTime: 1
+  canShoot: 0
+  Bullet: {fileID: 0}
 --- !u!1818360609 &151491949
 RotationConstraint:
   m_ObjectHideFlags: 0
