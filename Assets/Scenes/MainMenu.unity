@@ -647,7 +647,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 781640260}
         m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
         m_MethodName: StartGame
         m_Mode: 1
@@ -1405,6 +1405,8 @@ GameObject:
   - component: {fileID: 781640256}
   - component: {fileID: 781640258}
   - component: {fileID: 781640257}
+  - component: {fileID: 781640260}
+  - component: {fileID: 781640259}
   m_Layer: 5
   m_Name: MainMenuPanel
   m_TagString: Untagged
@@ -1472,6 +1474,34 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 781640255}
   m_CullTransparentMesh: 1
+--- !u!114 &781640259
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 781640255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bcf10b37f25aff648a465911244fd521, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainPanel: {fileID: 781640255}
+  settingsPanel: {fileID: 574774048}
+--- !u!114 &781640260
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 781640255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bcf10b37f25aff648a465911244fd521, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainPanel: {fileID: 781640255}
+  settingsPanel: {fileID: 574774048}
 --- !u!1 &818262523
 GameObject:
   m_ObjectHideFlags: 0
@@ -1657,7 +1687,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 781640260}
         m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
         m_MethodName: goBackFromSettings
         m_Mode: 1
@@ -2803,7 +2833,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 781640260}
         m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
         m_MethodName: Quit
         m_Mode: 1
@@ -3094,7 +3124,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 781640260}
         m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
         m_MethodName: EngageSettings
         m_Mode: 1

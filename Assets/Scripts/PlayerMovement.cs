@@ -16,11 +16,13 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float jumpHeight = 250f;
     private bool canJump = true;
     private Vector3 playerVelocity;
-    public static int health = 1;
+    public int health = 1;
     private float detectionRange = 110.05f;
     private bool ballForm = false;
 
-
+    public int getHealth() {
+        return health;
+    }
 
     private void Awake()
     {
