@@ -347,13 +347,7 @@ public class PlayerMovement : MonoBehaviour
     {
         m_playerControls.Controls.Disable();
     }
-    void Recoil()
-    {
 
-        player.transform.position += Vector3.right * runSpeed * Time.deltaTime;
-        player.transform.position += Vector3.left * runSpeed * Time.deltaTime;
-
-    }
 
 
 }

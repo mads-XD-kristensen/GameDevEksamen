@@ -16,7 +16,10 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] int damageToPlayerAmount;
     public PlayerMovement playerScript;
 
+    public float pushDistance = 0.1f;
     private bool dead = false;
+
+    public Rigidbody rBody;
 
 
     private void Awake()
@@ -70,6 +73,8 @@ public class EnemyAI : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             doDamage();
+            Vector3 direction = new Vector3(rBody.transform.position.x - player.transform.position.x, 0f, 0f);
+            //player.GetComponent<Rigidbody>.AddForce(direction * pushDistance); 
         }
         if (other.gameObject.tag == "Bullet")
         {
