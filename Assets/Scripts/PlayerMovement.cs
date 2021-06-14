@@ -79,20 +79,37 @@ public class PlayerMovement : MonoBehaviour
                 canJump = false;
             }
         }*/
-        if (Physics.Raycast(GO.transform.position + new Vector3(0.0f, 0.55f, 0.0f), Vector3.down, out hit, detectionRange))
+
+        Physics.Raycast(GO.transform.position + new Vector3(-0.3f, 0.55f, 0.3f), Vector3.down, out hit2, detectionRange);
+        Debug.Log("Distance " + hit2.distance);
+
+        Physics.Raycast(GO.transform.position + new Vector3(0.3f, 0.55f, -0.3f), Vector3.down, out hit3, detectionRange);
+        Debug.Log("Distance2 " + hit3.distance);
+
+        if (hit2.distance < 1f && ballForm == false || hit3.distance < 1f && ballForm == false)
         {
-
-
-            if (hit.distance < 1f && ballForm == false)
-            {
-                canJump = true;
-            }
-            else
-            {
-                canJump = false;
-            }
+            canJump = true;
         }
+        else
+        {
+            canJump = false;
+        }
+        /*
 
+                if (Physics.Raycast(GO.transform.position + new Vector3(0.0f, 0.55f, 0.0f), Vector3.down, out hit, detectionRange))
+                {
+
+
+                    if (hit.distance < 1f && ballForm == false)
+                    {
+                        canJump = true;
+                    }
+                    else
+                    {
+                        canJump = false;
+                    }
+                }
+        */
         Debug.DrawRay(GO.transform.position + new Vector3(0.0f, 0.55f, 0.0f), transform.TransformDirection(Vector3.down) * detectionRange, Color.yellow);
 
         var ballFormInputValue = m_playerControls.Controls.BallForm.ReadValue<float>();
