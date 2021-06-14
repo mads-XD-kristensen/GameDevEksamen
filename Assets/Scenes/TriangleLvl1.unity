@@ -3318,6 +3318,81 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 141166530148733284, guid: d3a1c0a95e4d6eb4d98bf51a0c6a3659,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 141166530148733284, guid: d3a1c0a95e4d6eb4d98bf51a0c6a3659,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 1281638396933377913, guid: d3a1c0a95e4d6eb4d98bf51a0c6a3659,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 1281638396933377913, guid: d3a1c0a95e4d6eb4d98bf51a0c6a3659,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 1281638396933377913, guid: d3a1c0a95e4d6eb4d98bf51a0c6a3659,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 1281638396933377913, guid: d3a1c0a95e4d6eb4d98bf51a0c6a3659,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1477478601909771573, guid: d3a1c0a95e4d6eb4d98bf51a0c6a3659,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 1477478601909771573, guid: d3a1c0a95e4d6eb4d98bf51a0c6a3659,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 1477478601909771573, guid: d3a1c0a95e4d6eb4d98bf51a0c6a3659,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 2542553954015125548, guid: d3a1c0a95e4d6eb4d98bf51a0c6a3659,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 104.33
+      objectReference: {fileID: 0}
+    - target: {fileID: 2542553954015125548, guid: d3a1c0a95e4d6eb4d98bf51a0c6a3659,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 108
+      objectReference: {fileID: 0}
+    - target: {fileID: 3217120738765271444, guid: d3a1c0a95e4d6eb4d98bf51a0c6a3659,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 3217120738765271444, guid: d3a1c0a95e4d6eb4d98bf51a0c6a3659,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 3217120738765271444, guid: d3a1c0a95e4d6eb4d98bf51a0c6a3659,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -103.83
+      objectReference: {fileID: 0}
+    - target: {fileID: 3433956555269063078, guid: d3a1c0a95e4d6eb4d98bf51a0c6a3659,
+        type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 40
+      objectReference: {fileID: 0}
     - target: {fileID: 4093206842776899686, guid: d3a1c0a95e4d6eb4d98bf51a0c6a3659,
         type: 3}
       propertyPath: m_Name
@@ -3333,6 +3408,16 @@ PrefabInstance:
       propertyPath: playerMovement
       value: 
       objectReference: {fileID: 2791458218672520671}
+    - target: {fileID: 8030963646915661505, guid: d3a1c0a95e4d6eb4d98bf51a0c6a3659,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 8030963646915661505, guid: d3a1c0a95e4d6eb4d98bf51a0c6a3659,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 8297049401603155855, guid: d3a1c0a95e4d6eb4d98bf51a0c6a3659,
         type: 3}
       propertyPath: m_RootOrder
@@ -5534,6 +5619,16 @@ PrefabInstance:
       propertyPath: dieSound
       value: 
       objectReference: {fileID: 1272156747}
+    - target: {fileID: 2791458218646388099, guid: 6ca9e4260e735bd42941b6c9005fc6d5,
+        type: 3}
+      propertyPath: dashSpeed
+      value: 65
+      objectReference: {fileID: 0}
+    - target: {fileID: 2791458218646388099, guid: 6ca9e4260e735bd42941b6c9005fc6d5,
+        type: 3}
+      propertyPath: jumpHeight
+      value: 350
+      objectReference: {fileID: 0}
     - target: {fileID: 2791458218646388099, guid: 6ca9e4260e735bd42941b6c9005fc6d5,
         type: 3}
       propertyPath: damageSound
