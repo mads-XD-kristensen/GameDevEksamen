@@ -6,6 +6,7 @@ public class PowerUpDash : MonoBehaviour
 {
     public GameObject pickupEffect;
     public GameObject player;
+    [SerializeField] AudioSource audioo;
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -17,9 +18,7 @@ public class PowerUpDash : MonoBehaviour
     void Pickup(Collider player)
     {
         Instantiate(pickupEffect, transform.position, transform.rotation);
-        //Instantiate(pickupEffect);
-        //Put effect here
-        //gameObject.SetActive(false);
+        audioo.Play();
         PlayerMovement PM = player.GetComponent<PlayerMovement>();
         if (PM == null)
         {

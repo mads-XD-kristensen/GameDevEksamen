@@ -18,6 +18,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float jumpHeight = 250f;
     [SerializeField] private int damageAmount = 1;
     [SerializeField] private float bulletSpeed = 6f;
+    [SerializeField] private AudioSource dieSound;
+    [SerializeField] private AudioSource damageSound;
     private bool canJump = true;
     private bool ballForm = false;
     private bool dashReset = true;
@@ -30,6 +32,11 @@ public class PlayerMovement : MonoBehaviour
 
     private bool right;
     private bool left;
+
+    private RaycastHit hit;
+    private RaycastHit hit1;
+    private RaycastHit hit2;
+    private RaycastHit hit3;
 
     void Start()
     {
@@ -51,50 +58,18 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
 
-        RaycastHit hit;
-        Debug.DrawRay(GO.transform.position + new Vector3(0.0f, 0.55f, 0.5f), transform.TransformDirection(Vector3.down) * detectionRange, Color.yellow);
-        if (Physics.Raycast(GO.transform.position + new Vector3(0.0f, 0.55f, 0.0f), Vector3.down, out hit, detectionRange))       // detectionRange can blive sat op for at øge hvornår man rammer jorden så man kan hoppe igen OPS!! hvis den er for høj kan man hoppe 2 gange
+
+        Debug.DrawRay(GO.transform.position + new Vector3(0.3f, 0.55f, 0.3f), transform.TransformDirection(Vector3.down) * detectionRange, Color.yellow);
+
+        Debug.DrawRay(GO.transform.position + new Vector3(0.3f, 0.55f, -0.3f), transform.TransformDirection(Vector3.down) * detectionRange, Color.yellow);
+
+        Debug.DrawRay(GO.transform.position + new Vector3(-0.3f, 0.55f, 0.3f), transform.TransformDirection(Vector3.down) * detectionRange, Color.yellow);
+
+        Debug.DrawRay(GO.transform.position + new Vector3(-0.3f, 0.55f, -0.3f), transform.TransformDirection(Vector3.down) * detectionRange, Color.yellow);
+
+        if ((Physics.Raycast(GO.transform.position + new Vector3(-0.3f, 0.55f, 0.3f), Vector3.down, out hit2, detectionRange)) || (Physics.Raycast(GO.transform.position + new Vector3(-0.3f, 0.55f, -0.3f), Vector3.down, out hit3, detectionRange)) || (Physics.Raycast(GO.transform.position + new Vector3(0.3f, 0.55f, -0.3f), Vector3.down, out hit1, detectionRange)) || (Physics.Raycast(GO.transform.position + new Vector3(0.3f, 0.55f, 0.3f), Vector3.down, out hit, detectionRange)))       // detectionRange can blive sat op for at øge hvornår man rammer jorden så man kan hoppe igen OPS!! hvis den er for høj kan man hoppe 2 gange
         {
-            if (hit.distance < 0.75 && ballForm == false)
-            {
-                canJump = true;
-            }
-            else
-            {
-                canJump = false;
-            }
-        }
-        RaycastHit hit1;
-        Debug.DrawRay(GO.transform.position + new Vector3(0.5f, 0.55f, 0.0f), transform.TransformDirection(Vector3.down) * detectionRange, Color.yellow);
-        if (Physics.Raycast(GO.transform.position + new Vector3(0.0f, 0.55f, 0.0f), Vector3.down, out hit1, detectionRange))       // detectionRange can blive sat op for at øge hvornår man rammer jorden så man kan hoppe igen OPS!! hvis den er for høj kan man hoppe 2 gange
-        {
-            if (hit1.distance < 0.75 && ballForm == false)
-            {
-                canJump = true;
-            }
-            else
-            {
-                canJump = false;
-            }
-        }
-        RaycastHit hit2;
-        Debug.DrawRay(GO.transform.position + new Vector3(-0.5f, 0.55f, 0.0f), transform.TransformDirection(Vector3.down) * detectionRange, Color.yellow);
-        if (Physics.Raycast(GO.transform.position + new Vector3(0.0f, 0.55f, 0.0f), Vector3.down, out hit2, detectionRange))       // detectionRange can blive sat op for at øge hvornår man rammer jorden så man kan hoppe igen OPS!! hvis den er for høj kan man hoppe 2 gange
-        {
-            if (hit2.distance < 0.75 && ballForm == false)
-            {
-                canJump = true;
-            }
-            else
-            {
-                canJump = false;
-            }
-        }
-        RaycastHit hit3;
-        Debug.DrawRay(GO.transform.position + new Vector3(0.0f, 0.55f, -0.5f), transform.TransformDirection(Vector3.down) * detectionRange, Color.yellow);
-        if (Physics.Raycast(GO.transform.position + new Vector3(0.0f, 0.55f, 0.0f), Vector3.down, out hit3, detectionRange))       // detectionRange can blive sat op for at øge hvornår man rammer jorden så man kan hoppe igen OPS!! hvis den er for høj kan man hoppe 2 gange
-        {
-            if (hit3.distance < 0.75 && ballForm == false)
+            if (hit.distance < 0.75 && ballForm == false || hit3.distance < 0.75 && ballForm == false || hit1.distance < 0.75 && ballForm == false || hit2.distance < 0.75 && ballForm == false)
             {
                 canJump = true;
             }
@@ -281,8 +256,13 @@ public class PlayerMovement : MonoBehaviour
     public void TakeDamage()
     {
         health = health - 1;
+        if (health > 0)
+        {
+            damageSound.Play();
+        }
         if (health <= 0)
         {
+            dieSound.Play();
             Debug.Log("Du død");
             Scene active_scene = SceneManager.GetActiveScene();
             SceneManager.LoadScene(active_scene.name);

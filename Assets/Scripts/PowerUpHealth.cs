@@ -6,6 +6,9 @@ public class PowerUpHealth : MonoBehaviour
 {
     public GameObject pickupEffect;
     public GameObject player;
+
+    [SerializeField] AudioSource audioo;
+
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -18,6 +21,7 @@ public class PowerUpHealth : MonoBehaviour
     {
         Debug.Log("hej");
         Instantiate(pickupEffect, transform.position, transform.rotation);
+        audioo.Play();
 
         PlayerMovement PM = player.GetComponent<PlayerMovement>();
         if (PM == null)
