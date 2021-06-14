@@ -7,6 +7,8 @@ TagManager:
   - Shootable
   - Ground
   - Bullet
+  - WalkWay
+  - Boss
   layers:
   - Default
   - TransparentFX
@@ -15,7 +17,7 @@ TagManager:
   - Water
   - UI
   - Player
-  - 
+  - Boss
   - 
   - 
   - 

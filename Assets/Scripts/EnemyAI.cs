@@ -10,9 +10,7 @@ public class EnemyAI : MonoBehaviour
     LayerMask whatIsGround, whatIsPlayer;
     float sightRange;
     bool playerInSightRange;
-    [SerializeField] int health;
     Animator animator;
-    int playerDamageAmount;
     public int damageToPlayerAmount = 1;
     public PlayerMovement playerScript;
 
@@ -22,16 +20,22 @@ public class EnemyAI : MonoBehaviour
     public Rigidbody rBody;
 
 
+    void Start()
+    {
+
+        Application.targetFrameRate = 30;
+    }
+
     private void Awake()
     {
         // Player skal være tagget som "Player"
         player = GameObject.FindGameObjectWithTag("Player");
-        playerDamageAmount = playerScript.getDamageAmount();
+
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         // Check om spiller er indenfor range
         //playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
@@ -70,22 +74,29 @@ public class EnemyAI : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
+
+
         if (dead == false)
         {
+
             if (other.gameObject.tag == "Player")
             {
+                Debug.Log("triggered");
                 doDamage();
                 if (rBody.transform.position.x > player.transform.position.x)
                 {
-                    Vector3 direction = (new Vector3(-(rBody.transform.position.x + player.transform.position.x), 0f, 0f)).normalized;
+
+                    Vector3 direction = (new Vector3((rBody.transform.position.x + player.transform.position.x), 0f, 0f)).normalized;
                     player.GetComponent<Rigidbody>().AddForce(direction * pushDistance * 5);
-                    rBody.AddForce(-(direction * pushDistance * 2));
+                    rBody.AddForce(-(direction * pushDistance) * 2);
                 }
-                else
+                if (rBody.transform.position.x < player.transform.position.x)
                 {
-                    Vector3 direction = (new Vector3(rBody.transform.position.x + player.transform.position.x, 0f, 0f)).normalized;
+                    float minus = (-1) * (rBody.transform.position.x + player.transform.position.x);
+                    Vector3 directionDirection = new Vector3(minus, 0f, 0f);
+                    Vector3 direction = (directionDirection).normalized;
                     player.GetComponent<Rigidbody>().AddForce(direction * pushDistance * 5);
-                    rBody.AddForce(-(direction * pushDistance * 2));
+                    rBody.AddForce(-(direction * pushDistance) * 2);
                 }
 
             }
@@ -102,22 +113,6 @@ public class EnemyAI : MonoBehaviour
     {
         Debug.Log("Player tager skade af enemy");
         playerScript.TakeDamage();
-    }
-
-    private void TakeDamage(int damage)
-    {
-        health -= damage;
-
-        if (health <= 0)
-        {
-            Die();
-        }
-
-    }
-
-    public int getDamageAmount()
-    {
-        return damageToPlayerAmount;
     }
 
     private void Die()

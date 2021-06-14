@@ -11,10 +11,11 @@ public class jump : MonoBehaviour
     private void Awake()
     {
         enemy = GetComponent<Rigidbody>();
-        
+
     }
 
-    void OnCollisionStay() {
+    void OnCollisionStay()
+    {
         isGrounded = true;
     }
 
@@ -22,12 +23,14 @@ public class jump : MonoBehaviour
     void Update()
     {
         /* if (getRandom()) { */
-            Jump();
+        Jump();
         /* } */
     }
 
-    void Jump() {
-        if(isGrounded) {
+    void Jump()
+    {
+        if (isGrounded)
+        {
             enemy.AddForce(Vector3.up * jumpHeight);
             isGrounded = false;
         }
