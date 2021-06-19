@@ -27,13 +27,11 @@ public class PlayerMovement : MonoBehaviour
     public bool canDash = false;
     public int health = 1;
     private float detectionRange = 110.05f;
-    public float dashResetTime = 1f;
+    public float dashResetTime = 2f;
     private float dashingTime = 0f;
 
     private bool right;
     private bool left;
-
-    private RaycastHit hit;
     private RaycastHit hit1;
     private RaycastHit hit2;
     private RaycastHit hit3;
@@ -58,59 +56,28 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
 
-        /*
-        Debug.DrawRay(GO.transform.position + new Vector3(0.3f, 0.55f, 0.3f), transform.TransformDirection(Vector3.down) * detectionRange, Color.yellow);
-
+        Debug.DrawRay(GO.transform.position + new Vector3(-0.3f, 0.55f, 0.3f), transform.TransformDirection(Vector3.down) * detectionRange, Color.yellow);
+        Debug.DrawRay(GO.transform.position + new Vector3(-0.0f, 0.55f, 0.0f), transform.TransformDirection(Vector3.down) * detectionRange, Color.yellow);
         Debug.DrawRay(GO.transform.position + new Vector3(0.3f, 0.55f, -0.3f), transform.TransformDirection(Vector3.down) * detectionRange, Color.yellow);
 
-        Debug.DrawRay(GO.transform.position + new Vector3(-0.3f, 0.55f, 0.3f), transform.TransformDirection(Vector3.down) * detectionRange, Color.yellow);
+        Physics.Raycast(GO.transform.position + new Vector3(-0.0f, 0.55f, 0.0f), Vector3.down, out hit1, detectionRange);
 
-        Debug.DrawRay(GO.transform.position + new Vector3(-0.3f, 0.55f, -0.3f), transform.TransformDirection(Vector3.down) * detectionRange, Color.yellow);
-
-        if ((Physics.Raycast(GO.transform.position + new Vector3(-0.3f, 0.55f, 0.3f), Vector3.down, out hit2, detectionRange)) || (Physics.Raycast(GO.transform.position + new Vector3(-0.3f, 0.55f, -0.3f), Vector3.down, out hit3, detectionRange)) || (Physics.Raycast(GO.transform.position + new Vector3(0.3f, 0.55f, -0.3f), Vector3.down, out hit1, detectionRange)) || (Physics.Raycast(GO.transform.position + new Vector3(0.3f, 0.55f, 0.3f), Vector3.down, out hit, detectionRange)))       // detectionRange can blive sat op for at øge hvornår man rammer jorden så man kan hoppe igen OPS!! hvis den er for høj kan man hoppe 2 gange
-        {
-            if (hit.distance < 1f && ballForm == false || hit3.distance < 1f && ballForm == false || hit1.distance < 1f && ballForm == false || hit2.distance < 1f && ballForm == false)
-            {
-                Debug.Log("Kan Hoppe");
-                canJump = true;
-            }
-            else
-            {
-                canJump = false;
-            }
-        }*/
 
         Physics.Raycast(GO.transform.position + new Vector3(-0.3f, 0.55f, 0.3f), Vector3.down, out hit2, detectionRange);
-        Debug.Log("Distance " + hit2.distance);
+
 
         Physics.Raycast(GO.transform.position + new Vector3(0.3f, 0.55f, -0.3f), Vector3.down, out hit3, detectionRange);
-        Debug.Log("Distance2 " + hit3.distance);
 
-        if (hit2.distance < 1f && ballForm == false || hit3.distance < 1f && ballForm == false)
+
+        if (hit2.distance < 0.57f && ballForm == false || hit3.distance < 0.57f && ballForm == false || hit1.distance < 0.57f && ballForm == false)
         {
+
             canJump = true;
         }
         else
         {
             canJump = false;
         }
-        /*
-
-                if (Physics.Raycast(GO.transform.position + new Vector3(0.0f, 0.55f, 0.0f), Vector3.down, out hit, detectionRange))
-                {
-
-
-                    if (hit.distance < 1f && ballForm == false)
-                    {
-                        canJump = true;
-                    }
-                    else
-                    {
-                        canJump = false;
-                    }
-                }
-        */
-        Debug.DrawRay(GO.transform.position + new Vector3(0.0f, 0.55f, 0.0f), transform.TransformDirection(Vector3.down) * detectionRange, Color.yellow);
 
         var ballFormInputValue = m_playerControls.Controls.BallForm.ReadValue<float>();
 
@@ -156,10 +123,18 @@ public class PlayerMovement : MonoBehaviour
                 {
                     Vector3 v = player.velocity;
                     if (v.x < 0f)
-                    {
+                    {/*
                         v.x = 2 * -v.x;
 
                         player.AddForce(v);
+                        */
+                        /*
+                        player.velocity = Vector3.zero;
+                        */
+                        Vector3 stopXVelocity = player.velocity;
+
+                        stopXVelocity.x = 0;
+                        player.velocity = stopXVelocity;
                     }
 
 
@@ -184,9 +159,17 @@ public class PlayerMovement : MonoBehaviour
                 {
                     Vector3 v = player.velocity;
                     if (v.x > 0f)
-                    {
+                    {   /*
                         v.x = 2 * -v.x;
                         player.AddForce(v);
+                        */
+                        /*
+                        player.velocity = Vector3.zero;
+                        */
+                        Vector3 stopXVelocity = player.velocity;
+
+                        stopXVelocity.x = 0;
+                        player.velocity = stopXVelocity;
                     }
 
 
@@ -281,7 +264,11 @@ public class PlayerMovement : MonoBehaviour
     {
         if (canJump)
         {
+            Vector3 stopUpVelocity = player.velocity;
+            stopUpVelocity.z = 0;
+            player.velocity = stopUpVelocity;
             animator.SetTrigger("isJumping");
+
             player.AddForce(Vector3.up * jumpHeight);
             canJump = false;
         }

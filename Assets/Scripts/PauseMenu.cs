@@ -61,6 +61,10 @@ public class PauseMenu : MonoBehaviour
         SceneManager.LoadScene("MainMenu"); // Do not hardcode Menu, make it a variable and load it in.
 
     }
+    public void RestartLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name); // loads current scene
+    }
 
     public void QuitGame()
     {

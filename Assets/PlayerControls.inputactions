@@ -59,6 +59,28 @@
                     "isPartOfComposite": false
                 },
                 {
+                    "name": "",
+                    "id": "f21fb6ff-18bc-4be4-a964-a7434518985b",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3a45d80f-84a5-4e19-8970-252e33d9e40b",
+                    "path": "<Keyboard>/upArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
                     "name": "1D Axis",
                     "id": "62070376-b756-4e7e-8f4d-5da1a3acb350",
                     "path": "1DAxis",
@@ -92,10 +114,54 @@
                     "isPartOfComposite": true
                 },
                 {
+                    "name": "1D Axis",
+                    "id": "1733f4e0-6eb1-4b49-b54d-007e25fc9b41",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Movement",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "43428056-d0b7-453d-b9c1-453badf861c6",
+                    "path": "<Keyboard>/leftArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "35ad998f-812a-4b62-a4ff-ae83089a0c01",
+                    "path": "<Keyboard>/rightArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
                     "name": "",
                     "id": "6f1c1291-8998-4a97-a32e-978660d3e4ab",
                     "path": "<Keyboard>/s",
                     "interactions": "Hold",
+                    "processors": "",
+                    "groups": "",
+                    "action": "BallForm",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "128853f5-fd55-4d7d-8cf9-7c8b9d916bac",
+                    "path": "<Keyboard>/downArrow",
+                    "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "BallForm",
@@ -115,8 +181,30 @@
                 },
                 {
                     "name": "",
+                    "id": "3de65866-6891-4ec6-96d6-aef33d0e7236",
+                    "path": "<Keyboard>/v",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Dash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "e35af58d-bbb4-475d-b573-0115ed370fb1",
                     "path": "<Keyboard>/c",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Shoot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6d486660-43d0-499a-b193-364bc1034cb6",
+                    "path": "<Keyboard>/ctrl",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
